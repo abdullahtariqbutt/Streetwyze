@@ -1,0 +1,2 @@
+module AssestsHelper
+end

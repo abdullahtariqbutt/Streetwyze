@@ -1,0 +1,37 @@
+<p>
+  <strong>Name:</strong>
+  <%= @assest.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @assest.address %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @assest.category %>
+</p>
+
+<p>
+  <strong>Leave rating:</strong>
+  <%= @assest.leave_rating %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @assest.rating %>
+</p>
+
+<p>
+  <strong>Stuff type:</strong>
+  <%= @assest.stuff_type %>
+</p>
+
+<p>
+  <strong>Story:</strong>
+  <%= @assest.story %>
+</p>
+
+<%= link_to 'Edit', edit_assest_path(@assest) %> |
+<%= link_to 'Back', assests_path %>

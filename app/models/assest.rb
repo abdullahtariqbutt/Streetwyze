@@ -1,0 +1,2 @@
+class Assest < ApplicationRecord
+end

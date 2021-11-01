@@ -1,10 +1,10 @@
-<%= form_with(model: assest) do |form| %>
-  <% if assest.errors.any? %>
+<%= form_with(model: asset) do |form| %>
+  <% if asset.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(assest.errors.count, "error") %> prohibited this assest from being saved:</h2>
+      <h2><%= pluralize(asset.errors.count, "error") %> prohibited this asset from being saved:</h2>
 
       <ul>
-        <% assest.errors.each do |error| %>
+        <% asset.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>

@@ -18,3 +18,4 @@ import 'stylesheets/applicaiton';
 import 'bootstrap';
 
 require("packs/password.js")
+require("packs/rating.js")

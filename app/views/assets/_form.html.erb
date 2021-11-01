@@ -1,4 +1,6 @@
 <%= form_with(model: asset) do |form| %>
+  
+  <!-- Show Errors -->
   <% if asset.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(asset.errors.count, "error") %> prohibited this asset from being saved:</h2>
@@ -11,42 +13,40 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :address %>
-    <%= form.text_field :address %>
+    <%= form.text_field :address, class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :category %>
-    <%= form.text_field :category %>
+    <%= form.text_field :category, class:"form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :leave_rating %>
-    <%= form.check_box :leave_rating %>
-  </div>
-
-  <div class="field">
+  <div class="field form-group" id="rating">
     <%= form.label :rating %>
-    <%= form.number_field :rating %>
+    <%= form.number_field :rating, class:"form-control" %>
   </div>
 
-  <div class="field">
+  <p class="field col-12" id="rating_check">I don't want to leave a rating</p>
+
+  <div class="field form-group">
     <%= form.label :stuff_type %>
-    <%= form.text_field :stuff_type %>
+    <%= form.text_field :stuff_type, class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :story %>
-    <%= form.text_field :story %>
+    <%= form.text_area :story, class:"form-control" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions form-group">
+    <%= form.submit class:"btn btn-primary" %>
   </div>
+
 <% end %>

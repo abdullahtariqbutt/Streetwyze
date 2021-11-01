@@ -10,7 +10,7 @@ $(document).ready(function(){
 
 	$("#eye").on("click", function(){
 		x = document.getElementById("password");
-  	show_eye = document.getElementById("show_eye");
+  		show_eye = document.getElementById("show_eye");
 		hide_eye = document.getElementById("hide_eye");
 
 		hide_eye.classList.remove("d-none");
@@ -29,7 +29,7 @@ $(document).ready(function(){
 
   $("#c_eye").on("click", function(){
 		x = document.getElementById("confirm_password");
-  	show_eye = document.getElementById("c_show_eye");
+  		show_eye = document.getElementById("c_show_eye");
 		hide_eye = document.getElementById("c_hide_eye");
 
 		hide_eye.classList.remove("d-none");

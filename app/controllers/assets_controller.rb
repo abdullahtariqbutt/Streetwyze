@@ -9,14 +9,14 @@ class AssetsController < ApplicationController
   end
 
   def new
-    @asset = asset.new
+    @asset = Asset.new
   end
 
   def edit
   end
 
   def create
-    @asset = asset.new(asset_params)
+    @asset = Asset.new(asset_params)
 
     if @asset.save
       redirect_to @asset
@@ -40,7 +40,7 @@ class AssetsController < ApplicationController
 
   private
     def set_asset
-      @asset = asset.find(params[:id])
+      @asset = Asset.find(params[:id])
     end
 
     def asset_params

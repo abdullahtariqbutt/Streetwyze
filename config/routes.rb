@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :assests
+  resources :assets
+  
   devise_for :users
   root to: "users#index"
 end

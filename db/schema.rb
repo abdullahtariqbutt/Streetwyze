@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_01_075313) do
+ActiveRecord::Schema.define(version: 2021_11_01_091503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 2021_11_01_075313) do
     t.string "name"
     t.string "address"
     t.string "category"
-    t.boolean "leave_rating", default: true
     t.integer "rating"
     t.string "stuff_type"
     t.string "story"

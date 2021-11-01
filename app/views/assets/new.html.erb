@@ -1,5 +1,13 @@
-<h1>New Asset</h1>
+<div class="container h-100">
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="col-10 col-md-8 col-lg-6 bg-light border p-4">
 
-<%= render 'form', asset: @asset %>
+	  <h1>New Asset</h1>
 
-<%= link_to 'Back', assets_path %>
+	  <%= render 'form', asset: @asset %>
+
+	  <%= link_to 'Back', assets_path, class:"form-group" %>
+		
+    </div>
+  </div>
+</div>

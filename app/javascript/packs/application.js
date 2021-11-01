@@ -16,5 +16,3 @@ global.$ = jQuery;
 
 import 'stylesheets/applicaiton';
 import 'bootstrap';
-
-require("packs/password.js")

@@ -9,8 +9,8 @@ module ApplicationHelper
         "8", "9", "?", "^", "@"
       ]
     ]
-    chars = subsets[0..complexity].map { |subset| subset.to_a }.flatten
+    chars = subsets[0..complexity].flatten
     c = chars.sample(length).join
-    return ("username" + c)
+    "username" + c
   end
 end

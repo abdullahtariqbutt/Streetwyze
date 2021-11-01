@@ -32,7 +32,7 @@
             <div class="input-group col-12">
               <%= f.password_field :password, autocomplete: "new-password", placeholder:"Password",  id:"password", class:"form-control" %>
 
-              <div class="input-group-append" id="signUp_pswd">
+              <div class="input-group-append">
                 <span class="input-group-text" id="eye">
                   <i class="fas fa-eye" id="show_eye">
                     <%= image_tag("eye_visible.png", height: '21', width: '26') %>
@@ -53,12 +53,12 @@
           <div class="input-group col-12">
             <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"Confirm Password", id:"confirm_password", class:"form-control" %>
 
-            <div class="input-group-append" id="signUp_c_pswd">
-                <span class="input-group-text" id="c_eye">
-                  <i class="fas fa-eye" id="c_show_eye">
+            <div class="input-group-append">
+                <span class="input-group-text" id="eye">
+                  <i class="fas fa-eye" id="show_eye">
                     <%= image_tag("eye_visible.png", height: '21', width: '26') %>
                   </i>
-                  <i class="fas fa-eye-slash d-none" id="c_hide_eye">
+                  <i class="fas fa-eye-slash d-none" id="hide_eye">
                     <%= image_tag("eye_slash_visible.png", height: '21', width: '26') %>
                   </i>
                 </span>

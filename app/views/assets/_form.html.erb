@@ -1,6 +1,5 @@
 <%= form_with(model: asset) do |form| %>
   
-  <!-- Show Errors -->
   <% if asset.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(asset.errors.count, "error") %> prohibited this asset from being saved:</h2>
@@ -30,12 +29,12 @@
 
   <div class="field form-group" id="rating">
     <%= form.label :rating %>
-    <%= form.number_field :rating, class:"form-control" %>
+    <%= form.hidden_field :rating, class:"form-control", id: :review_star %>
   </div>
 
-  <div id="review"><p>Place stars here</p></div>
-
-  <p id="rating_check">I don't want to leave a rating</p>
+  <div class="field form-group">
+    <p id="rating_check" >I want to leave a rating</p>
+  </div>
 
   <div class="field form-group">
     <%= form.label :stuff_type %>
@@ -52,3 +51,14 @@
   </div>
 
 <% end %>
+
+<!--Rating javascript-->
+  <script>
+  $('#rating').raty({
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+
+    scoreName: 'asset[rating]',
+    half: false,
+  });
+  </script> 

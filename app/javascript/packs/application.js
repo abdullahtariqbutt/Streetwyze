@@ -17,6 +17,5 @@ global.$ = jQuery;
 import 'stylesheets/applicaiton';
 import 'bootstrap';
 
-require("packs/password.js")
 require("packs/toggle_rating.js")
-require("packs/rating.js")
+require('packs/raty.js')

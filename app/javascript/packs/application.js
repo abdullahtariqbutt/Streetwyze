@@ -19,3 +19,6 @@ import 'bootstrap';
 
 require("packs/toggle_rating.js")
 require('packs/raty.js')
+
+require("trix")
+require("@rails/actiontext")

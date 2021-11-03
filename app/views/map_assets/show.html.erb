@@ -1,36 +1,36 @@
 <p>
   <strong>Name:</strong>
-  <%= @asset.name %>
+  <%= @map_asset.name %>
 </p>
 
 <p>
   <strong>Address:</strong>
-  <%= @asset.address %>
+  <%= @map_asset.address %>
 </p>
 
 <p>
   <strong>Category:</strong>
-  <%= @asset.category %>
+  <%= @map_asset.category %>
 </p>
 
 <p>
   <strong>Rating:</strong>
-  <%= @asset.rating %>
+  <%= @map_asset.rating %>
 </p>
 
 <p>
   <strong>Stuff type:</strong>
-  <%= @asset.stuff_type %>
+  <%= @map_asset.stuff_type %>
 </p>
 
 <p>
   <strong>Story:</strong>
-  <%= @asset.story %>
+  <%= @map_asset.story %>
 </p>
 
 <div>
   <strong>Attachments:</strong>
-  <% @asset.images.each do |img| %>
+  <% @map_asset.images.each do |img| %>
     <% if upload.variable? %>
       <%= link_to image_tag(img.variant(resize: "400x400")), img %>
     <% elsif image.previewable? %>
@@ -43,5 +43,5 @@
   <% end %>
 </div>
 
-<%= link_to 'Edit', edit_asset_path(@asset) %> |
-<%= link_to 'Back', assets_path %>
+<%= link_to 'Edit', edit_map_asset_path(@map_asset) %> |
+<%= link_to 'Back', map_assets_path %>

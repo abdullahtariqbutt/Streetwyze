@@ -1,11 +1,11 @@
-<%= form_with(model: asset) do |form| %>
+<%= form_with(model: map_asset) do |form| %>
   
-  <% if asset.errors.any? %>
+  <% if map_asset.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(asset.errors.count, "error") %> prohibited this asset from being saved:</h2>
+      <h2><%= pluralize(map_asset.errors.count, "error") %> prohibited this asset from being saved:</h2>
 
       <ul>
-        <% asset.errors.each do |error| %>
+        <% map_asset.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>

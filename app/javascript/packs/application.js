@@ -17,8 +17,8 @@ global.$ = jQuery;
 import 'stylesheets/applicaiton';
 import 'bootstrap';
 
-require("packs/toggle_rating.js")
-require('packs/raty.js')
+require('./raty.js')
+require("./rating.js")
 
 require("trix")
 require("@rails/actiontext")

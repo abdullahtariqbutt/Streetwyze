@@ -24,12 +24,12 @@
 
   <div class="field form-group">
     <%= form.label :category %>
-    <%= form.text_field :category, class:"form-control" %>
+    <%= form.select :category, ["Art", "Education", "Health", "Business", "Enviroment", "Housing", "Child Care", "Food", "Industry", "Safety", "Transportation"] %>  
   </div>
 
   <div class="field form-group" id="rating">
     <%= form.label :rating %>
-    <%= form.hidden_field :rating, class:"form-control", id: :review_star %>
+    <%= form.hidden_field :rating, id: "review_star" %>
   </div>
 
   <div class="field form-group">
@@ -38,7 +38,13 @@
 
   <div class="field form-group">
     <%= form.label :stuff_type %>
-    <%= form.text_field :stuff_type, class:"form-control" %>
+    <br>
+    <%= form.radio_button :stuff_type, "Good" %>
+    <%= form.label :Good %>
+    <%= form.radio_button :stuff_type, "Bad" %>
+    <%= form.label :Bad %>
+    <%= form.radio_button :stuff_type, "Fix" %>
+    <%= form.label :Fix %>
   </div>
 
   <div class="field form-group">
@@ -54,16 +60,4 @@
   <div class="actions form-group">
     <%= form.submit class:"btn btn-primary" %>
   </div>
-
 <% end %>
-
-<!--Rating javascript-->
-  <script>
-  $('#rating').raty({
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-
-    scoreName: 'asset[rating]',
-    half: false,
-  });
-  </script> 

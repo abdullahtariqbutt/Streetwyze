@@ -1,7 +1,7 @@
 class User < ApplicationRecord
 
-  USERNAME_REGEX = "/\A(?=.*?[#?!@$%^&*-]).{4,30}\z/"
-  PASSWORD_REGEX = "/\A(?=.*[A-Za-z])(?=.*\d).{8,}\z/"
+  USERNAME_REGEX = /\A(?=.*?[#?!@$%^&*-]).{4,30}\z/
+  PASSWORD_REGEX = /\A(?=.*[A-Za-z])(?=.*\d).{8,}\z/
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,

@@ -1,3 +1,4 @@
 class Asset < ApplicationRecord
 	has_rich_text :story
+	has_many_attached :images
 end

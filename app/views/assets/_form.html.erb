@@ -46,6 +46,11 @@
     <%= form.rich_text_area :story, class:"form-control" %>
   </div>
 
+  <div class="field form-group">
+    <%= form.label :images %>
+    <%= form.file_field :images, multiple: true, class:"form-control" %>
+  </div>
+
   <div class="actions form-group">
     <%= form.submit class:"btn btn-primary" %>
   </div>

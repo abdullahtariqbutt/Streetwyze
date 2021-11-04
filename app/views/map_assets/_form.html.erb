@@ -27,8 +27,9 @@
     <%= form.select :category, ["Art", "Education", "Health", "Business", "Enviroment", "Housing", "Child Care", "Food", "Industry", "Safety", "Transportation"] %>  
   </div>
 
-  <div class="field form-group" id="rating">
+  <div class="field form-group" id="rate">
     <%= form.label :rating %>
+    <div id="rating"></div>
     <%= form.hidden_field :rating, id: "review_star" %>
   </div>
 

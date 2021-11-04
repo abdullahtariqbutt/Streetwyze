@@ -1,21 +1,28 @@
 $(document).on('turbolinks:load',function(){
 
   $('#rating').raty({
-    target: '#review_star',
-    targetType:   'score',
-    targetKeep:   true,
 
-    scoreName: 'asset[rating]',
+    targetType: 'score',
+    targetKeep: true,
+    target: '#review_star',
     half: false,
+
+    starOn: '../images/star-on.png',
+    starOff: '../images/star-off.png',
+
   });
 
 	$("#rating_check").on("click", function(){
 
-      $(this).text('I dont want to leave a rating');
-      $("#rating").hide("slow");
+      $(this).text('I don\'t want to leave a rating');
+      $("#rate").hide("slow");
 
       $('#rating').raty({
-      	targetScore: ''
+
+      	targetType: 'score',
+        targetKeep: true,
+        target: '#review_star',
+        targetScore: null
       });
 
     });

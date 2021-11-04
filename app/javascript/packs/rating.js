@@ -1,5 +1,4 @@
-$(document).on('turbolinks:load',function(){
-
+$.fn.rating_binder = function() {
   $('#rating').raty({
 
     targetType: 'score',
@@ -12,13 +11,13 @@ $(document).on('turbolinks:load',function(){
 
   });
 
-	$("#rating_check").on("click", function(){
+  $("#rating_check").on("click", function(){
 
     $(this).text('I don\'t want to leave a rating');
     $("#rate").hide("slow");
 
     $('#rating').raty({
-    	targetType: 'score',
+      targetType: 'score',
       targetKeep: true,
       target: '#review_star',
       targetScore: null
@@ -34,5 +33,8 @@ $(document).on('turbolinks:load',function(){
     starOff: '../images/star-off.png',
 
   });
+}
 
+$(document).on('turbolinks:load',function(){
+  $.fn.rating_binder();
 });

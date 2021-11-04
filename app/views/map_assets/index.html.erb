@@ -1,4 +1,21 @@
-<h1>Assets</h1>
+<h1>Assets List</h1>
+
+<%= link_to 'Create Asset', new_map_asset_path, class: "btn btn-primary", data: { toggle: 'modal', target: '#new_asset_modal', remote: true } %>
+
+<div class="modal fade" id="new_asset_modal" tabindex="-1" aria-labelledby="AssetModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="new_asset_modal_label">Create Asset</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="new_asset_form">
+      </div>
+    </div>
+  </div>
+</div>
 
 <table>
   <thead>
@@ -13,23 +30,10 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="assets_table">
     <% @map_assets.each do |asset| %>
-      <tr>
-        <td><%= asset.name %></td>
-        <td><%= asset.address %></td>
-        <td><%= asset.category %></td>
-        <td><%= asset.rating %></td>
-        <td><%= asset.stuff_type %></td>
-        <td><%= asset.story %></td>
-        <td><%= link_to 'Show', map_asset_path(asset) %></td>
-        <td><%= link_to 'Edit', edit_map_asset_path(asset) %></td>
-        <td><%= link_to 'Destroy', map_asset_path(asset), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <%= render 'map_asset_row', asset: asset %>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'Create Asset', new_map_asset_path, class: "btn btn-primary" %>

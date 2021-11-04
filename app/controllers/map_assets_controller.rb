@@ -2,7 +2,7 @@ class MapAssetsController < ApplicationController
   before_action :set_asset, only: %i[ show edit update destroy ]
 
   def index
-    @map_assets = MapAsset.all
+    @map_assets = MapAsset.order(created_at: :desc)
   end
 
   def show
@@ -17,11 +17,14 @@ class MapAssetsController < ApplicationController
 
   def create
     @map_asset = MapAsset.new(asset_params)
-
-    if @map_asset.save
-      redirect_to @map_asset
-    else
-      render :new
+    respond_to do |format|
+      if @map_asset.save
+        format.js
+        format.html { redirect_to @map_asset }
+      else
+        format.js
+        format.html { render :new }
+      end
     end
   end
 

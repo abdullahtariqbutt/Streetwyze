@@ -1,27 +1,32 @@
-<p>
-  <strong>Name:</strong>
-  <%= @map_asset.name %>
-</p>
+<div class="jumbotron">
 
-<p>
-  <strong>Address:</strong>
-  <%= @map_asset.address %>
-</p>
+  <h1 class="display-4">
+    <%= @map_asset.name %>
+  </h1>
 
-<p>
-  <strong>Category:</strong>
-  <%= @map_asset.category %>
-</p>
+  <p class="lead">
+    <%= @map_asset.address %>
+  </p>
 
-<p>
-  <strong>Rating:</strong>
-  <%= @map_asset.rating %>
-</p>
+  <hr class="my-4">
 
-<p>
-  <strong>Stuff type:</strong>
-  <%= @map_asset.stuff_type %>
-</p>
+  <div class="row">
+
+    <p class="pl-3">
+      <strong>Category:</strong>
+      <%= @map_asset.category %>
+    </p>
+
+    <p class="pl-3">
+      <strong>Stuff Type:</strong>
+      <%= @map_asset.stuff_type %>
+    </p>
+    
+  </div>
+
+  <div id="rating_display" data-score="<%= @map_asset.rating %>"></div>
+
+</div>
 
 <p>
   <strong>Story:</strong>
@@ -46,5 +51,5 @@
 
 <br>
 
-<%= link_to 'Edit', edit_map_asset_path(@map_asset) %> |
-<%= link_to 'Back', map_assets_path %>
+<%= link_to 'Edit', edit_map_asset_path(@map_asset), class:"btn btn-primary btn-lg" %> |
+<%= link_to 'Back', map_assets_path, class:"btn btn-primary btn-lg" %>

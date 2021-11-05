@@ -1,25 +1,5 @@
-<%= form_with(model: [ @blog, @blog.comments.build ], local: true) do |form| %>
+<%= form_with(model: [ @map_asset, @map_asset.stories.build ]) do |form| %>
 
-  <p>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-  </p>
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
-
-
-
-
-
-
-
-<%= form_with(model: story) do |form| %>
   <% if story.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(story.errors.count, "error") %> prohibited this story from being saved:</h2>
@@ -82,4 +62,5 @@
   <div class="actions">
     <%= form.submit %>
   </div>
+  
 <% end %>

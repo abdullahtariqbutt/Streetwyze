@@ -19,7 +19,7 @@ class MapAssetsController < ApplicationController
       if @map_asset.save
         format.html { redirect_to @map_asset, notice: "Asset was successfully created." }
       else
-        format.html { render :new, notice: "Asset was not created" }
+        format.html { render :new }
       end
       format.js
     end
@@ -29,13 +29,13 @@ class MapAssetsController < ApplicationController
     if @map_asset.update(asset_params)
       redirect_to @map_asset, notice: "Asset was successfully updated."
     else
-      render :edit, notice: "Asset was not updated."
+      render :edit
     end
   end
 
   def destroy
     @map_asset.destroy
-    redirect_to map_assets_url, notice: "Asset was destoried."
+    redirect_to map_assets_url, notice: "Asset was destroyed."
   end
 
   private
@@ -45,6 +45,6 @@ class MapAssetsController < ApplicationController
     end
 
     def asset_params
-      params.require(:map_asset).permit(:name, :address, :category, :leave_rating, :rating, :stuff_type, :story, images:[])
+      params.require(:map_asset).permit(:name, :address, :category, :leave_rating, :rating, :stuff_type, :description, images:[])
     end
 end

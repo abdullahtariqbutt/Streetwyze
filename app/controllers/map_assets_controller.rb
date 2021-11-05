@@ -1,47 +1,45 @@
 class MapAssetsController < ApplicationController
-  before_action :set_asset, only: %i[ show edit update destroy ]
+  before_action :set_asset, only: %i[show edit update destroy]
 
   def index
     @map_assets = MapAsset.order(created_at: :desc)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @map_asset = MapAsset.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @map_asset = MapAsset.new(asset_params)
     respond_to do |format|
       if @map_asset.save
-        format.js
-        format.html { redirect_to @map_asset }
+        format.html { redirect_to @map_asset, notice: "Asset was successfully created." }
       else
-        format.js
-        format.html { render :new }
+        format.html { render :new, notice: "Asset was not created" }
       end
+      format.js
     end
   end
 
   def update
     if @map_asset.update(asset_params)
-      redirect_to @map_asset
+      redirect_to @map_asset, notice: "Asset was successfully updated."
     else
-      render :edit
+      render :edit, notice: "Asset was not updated."
     end
   end
 
   def destroy
     @map_asset.destroy
-    redirect_to map_assets_url
+    redirect_to map_assets_url, notice: "Asset was destoried."
   end
 
   private
+
     def set_asset
       @map_asset = MapAsset.find(params[:id])
     end

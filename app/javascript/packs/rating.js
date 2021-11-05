@@ -1,4 +1,4 @@
-$.fn.rating_binder = function() {
+window.rating_binder = function() {
   $('#rating').raty({
 
     targetType: 'score',
@@ -36,5 +36,5 @@ $.fn.rating_binder = function() {
 }
 
 $(document).on('turbolinks:load',function(){
-  $.fn.rating_binder();
+  rating_binder();
 });

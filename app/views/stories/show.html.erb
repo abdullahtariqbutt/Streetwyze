@@ -1,0 +1,33 @@
+<p>
+  <strong>Name:</strong>
+  <%= @story.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @story.address %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @story.category %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @story.rating %>
+</p>
+
+<p>
+  <strong>Stuff type:</strong>
+  <%= @story.stuff_type %>
+</p>
+
+<p>
+  <strong>Story:</strong>
+  <%= @story.story %>
+</p>
+
+<%= link_to 'Asset', map_asset_path(@map_asset) %> |
+<%= link_to 'Edit', edit_story_path(@story) %> |
+<%= link_to 'Back', stories_path %>

@@ -14,7 +14,7 @@ ActiveStorage.start()
 import $ from 'jquery';
 global.$ = jQuery;
 
-import "packs/bootstrap.js"
+import "bootstrap";
 
 require('packs/raty.js')
 require("packs/rating.js")

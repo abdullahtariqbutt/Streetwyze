@@ -1,3 +1,24 @@
+<%= form_with(model: [ @blog, @blog.comments.build ], local: true) do |form| %>
+
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
+
+
+
+
+
+
 <%= form_with(model: story) do |form| %>
   <% if story.errors.any? %>
     <div id="error_explanation">
@@ -11,34 +32,51 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <div class="field form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, class:"form-control" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
+    <div class="field form-group">
+      <%= form.label :address %>
+      <%= form.text_field :address, class:"form-control" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :category %>
-    <%= form.text_field :category %>
-  </div>
+    <div class="field form-group">
+      <%= form.label :category %>
+      <%= form.select :category, ["Art", "Education", "Health", "Business", "Enviroment", "Housing", "Child Care", "Food", "Industry", "Safety", "Transportation"] %>  
+    </div>
 
-  <div class="field">
-    <%= form.label :rating %>
-    <%= form.number_field :rating %>
-  </div>
+    <div class="field form-group" id="rate">
+      <%= form.label :rating %>
+      <div id="rating"></div>
+      <%= form.hidden_field :rating, id: "review_star" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :stuff_type %>
-    <%= form.text_field :stuff_type %>
-  </div>
+    <div class="field form-group">
+      <p id="rating_check" >I want to leave a rating</p>
+    </div>
 
-  <div class="field">
-    <%= form.label :story %>
-    <%= form.text_field :story %>
+    <div class="field form-group">
+      <%= form.label :stuff_type %>
+      <br>
+      <%= form.radio_button :stuff_type, "Good" %>
+      <%= form.label :Good %>
+      <%= form.radio_button :stuff_type, "Bad" %>
+      <%= form.label :Bad %>
+      <%= form.radio_button :stuff_type, "Fix" %>
+      <%= form.label :Fix %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :story %>
+      <%= form.rich_text_area :story, class:"form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :images %>
+      <%= form.file_field :images, multiple: true, class:"form-control" %>
+    </div>
   </div>
 
   <div class="actions">

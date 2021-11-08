@@ -1,9 +1,9 @@
 class StoriesController < ApplicationController
   before_action :set_story, only: %i[show edit update destroy]
-  before_action :find_map_asset, only: %i[new create destroy]
+  before_action :find_map_asset, only: %i[new create]
 
   def index
-    @stories = Story.all
+    @stories = Story.order(created_at: :desc)
   end
 
   def show; end
@@ -19,31 +19,29 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.save
-        format.html { redirect_to @story }
-        format.js
+        format.html { redirect_to @story, notice: "Story Saved" }
       else
         format.html { render :new }
-        format.js
       end
+      format.js
     end
   end
 
   def update
     if @story.update(story_params)
-      redirect_to @story
+      redirect_to @story, notice: "Story Updated"
     else
       render :edit
     end
   end
 
   def destroy
-    @story = @map_asset.stories.find(params[:id])
-
     @story.destroy
-    redirect_to stories_url
+    redirect_to stories_url, notice: "Story Destroyed"
   end
 
   private
+
     def set_story
       @story = Story.find(params[:id])
     end

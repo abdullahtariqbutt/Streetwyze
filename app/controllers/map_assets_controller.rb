@@ -6,14 +6,14 @@ class MapAssetsController < ApplicationController
   end
 
   def show
+    @stories = @map_asset.stories.order(created_at: :desc)
   end
 
   def new
     @map_asset = MapAsset.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @map_asset = MapAsset.new(asset_params)
@@ -42,6 +42,7 @@ class MapAssetsController < ApplicationController
   end
 
   private
+
     def set_asset
       @map_asset = MapAsset.find(params[:id])
     end

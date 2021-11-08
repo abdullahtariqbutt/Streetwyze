@@ -28,6 +28,21 @@
   <%= @story.description %>
 </p>
 
-<%= link_to 'Asset', map_asset_path(@map_asset) %> |
+<div>
+  <strong>Attachments:</strong>
+  <br>
+  <% @story.images.each do |img| %>
+    <% if img.variable? %>
+      <%= link_to image_tag(img.variant(resize: "400x400")), img %>
+    <% elsif img.previewable? %>
+      <%= link_to image_tag(img.preview(resize: "400x400")), img %>
+    <% elsif img.image? %>
+      <%= link_to image_tag(img, width:400), img %>
+    <% else %>
+      <%= link_to image.filename , rails_blog_path %>
+    <% end %>
+  <% end %>
+</div>
+
 <%= link_to 'Edit', edit_story_path(@story) %> |
 <%= link_to 'Back', stories_path %>

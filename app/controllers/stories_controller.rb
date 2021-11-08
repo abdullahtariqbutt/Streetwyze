@@ -1,7 +1,7 @@
 class StoriesController < ApplicationController
   before_action :set_story, only: %i[show edit update destroy]
   before_action :find_map_asset, only: [:create]
-  before_action :find_story, only: %i[show, edit, update, destroy]
+  before_action :find_story, only: %i[show edit update destroy]
 
   def index
     @stories = Story.all
@@ -50,7 +50,7 @@ class StoriesController < ApplicationController
     end
 
     def story_params
-      params.require(:story).permit(:name, :address, :category, :rating, :stuff_type, :story)
+      params.require(:story).permit(:name, :address, :category, :rating, :stuff_type, :description, images:[])
     end
 
     def find_map_asset

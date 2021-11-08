@@ -1,25 +1,26 @@
-<%= form_with(model: [ @map_asset, @map_asset.stories.build ]) do |form| %>
+<%= form_with(model: @story, url: [@map_asset, @map_asset.stories.build], local:false) do |form| %>
 
-  <% if story.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(story.errors.count, "error") %> prohibited this story from being saved:</h2>
+  <div class="modal-body">
 
-      <ul>
-        <% story.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <% if @story.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@story.errors.count, "error") %> prohibited this story from being saved:</h2>
+        <ul>
+          <% @story.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-  <div class="field form-group">
+    <div class="field form-group">
       <%= form.label :name %>
-      <%= form.text_field :name, class:"form-control" %>
+      <%= form.text_field :name, class:"form-control", readonly: true , value: @map_asset.name %>
     </div>
 
     <div class="field form-group">
       <%= form.label :address %>
-      <%= form.text_field :address, class:"form-control" %>
+      <%= form.text_field :address, class:"form-control", readonly: true, value: @map_asset.address %>
     </div>
 
     <div class="field form-group">
@@ -57,10 +58,14 @@
       <%= form.label :images %>
       <%= form.file_field :images, multiple: true, class:"form-control" %>
     </div>
+
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="modal-footer">
+    <div class="actions form-group">
+      <%= form.submit class:"btn btn-primary" %>
+    </div>
+    <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
   </div>
-  
+
 <% end %>

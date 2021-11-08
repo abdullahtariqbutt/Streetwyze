@@ -5,7 +5,9 @@ class MapAssetsController < ApplicationController
     @map_assets = MapAsset.order(created_at: :desc)
   end
 
-  def show; end
+  def show
+    @stories = @map_asset.stories.order(created_at: :desc)
+  end
 
   def new
     @map_asset = MapAsset.new

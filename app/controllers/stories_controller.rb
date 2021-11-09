@@ -21,14 +21,11 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.save
-        if @story.rating.present?
-          @map_asset.update(rating: calulate_avg_rating(@map_asset))
-        end
         format.html { redirect_to @story, notice: "Story Saved" }
       else
         format.html { render :new }
       end
-      # format.js
+      format.js
     end
   end
 

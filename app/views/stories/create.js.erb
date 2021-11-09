@@ -1,7 +1,15 @@
 <% if @story.errors.any? %>
+
   $("#new_story_form").html("<%= j render('form', story: @story) %>");
   rating_binder();
+
 <% else %>
+
+  <% if @story.rating.present? %>
+    <% @story.map_asset.update(rating: calulate_avg_rating(@story.map_asset)) %>
+  <% end %>
+
   $("#stories_table").prepend("<%= j render('shared/story_row', story: @story) %>");
-  $(".close-modal").click()
+  $(".close-modal").click();
+
 <% end %>

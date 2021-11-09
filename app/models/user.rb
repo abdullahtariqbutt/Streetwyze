@@ -1,5 +1,8 @@
 class User < ApplicationRecord
 
+  has_many :map_assets
+  has_many :stories
+
   USERNAME_REGEX = /\A(?=.*?[#?!@$%^&*-]).{4,30}\z/
   PASSWORD_REGEX = /\A(?=.*[A-Za-z])(?=.*\d).{8,}\z/
 

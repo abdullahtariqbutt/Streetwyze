@@ -40,6 +40,12 @@ class MapAssetsController < ApplicationController
     redirect_to map_assets_url, notice: "Asset was destroyed."
   end
 
+  def delete_image
+    @image = ActiveStorage::Blob.find_signed(params[:id])
+    @image.attachments.first.purge
+    redirect_to map_assets_path, notice: "Image Destroyed"
+  end
+
   private
 
     def set_asset
@@ -47,6 +53,6 @@ class MapAssetsController < ApplicationController
     end
 
     def asset_params
-      params.require(:map_asset).permit(:name, :address, :category, :leave_rating, :rating, :stuff_type, :description, images:[])
+      params.require(:map_asset).permit(:user_id, :name, :address, :category, :leave_rating, :rating, :stuff_type, :description, images:[])
     end
 end

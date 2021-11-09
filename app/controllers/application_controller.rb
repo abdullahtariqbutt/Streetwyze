@@ -3,11 +3,11 @@ class ApplicationController < ActionController::Base
 
   # Redirect to a specific page on successful sign in and out
   def after_sign_in_path_for(resource)
-    assets_path
+    map_assets_path
   end
   
   def after_sign_out_path_for(resource)
-    assets_path
+    map_assets_path
   end
 
   protected

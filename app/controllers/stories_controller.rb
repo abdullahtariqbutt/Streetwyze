@@ -1,4 +1,6 @@
 class StoriesController < ApplicationController
+  include StoriesHelper
+
   before_action :set_story, only: %i[show edit update destroy]
   before_action :set_asset, only: %i[new create]
 
@@ -19,11 +21,14 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.save
+        if @story.rating.present?
+          @map_asset.update(rating: calulate_avg_rating(@map_asset))
+        end
         format.html { redirect_to @story, notice: "Story Saved" }
       else
         format.html { render :new }
       end
-      format.js
+      # format.js
     end
   end
 

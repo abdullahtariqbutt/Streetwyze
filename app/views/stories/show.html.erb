@@ -1,5 +1,6 @@
-<p>
-  <strong>Name:</strong>
+<div>
+    <strong>Name:</strong>
+  </div>
   <%= @story.name %>
 </p>
 
@@ -15,7 +16,9 @@
 
 <p>
   <strong>Rating:</strong>
-  <%= @story.rating %>
+  <div id="story">
+    <div id="rating_display" data-score="<%= @story.rating %>"></div>
+  </div>
 </p>
 
 <p>

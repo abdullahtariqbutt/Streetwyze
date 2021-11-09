@@ -1,10 +1,12 @@
 window.rating_binder = function() {
-  $('#rating').raty({
+  $('#rate #rating').raty({
 
     targetType: 'score',
     targetKeep: true,
     target: '#review_star',
     half: false,
+
+    numberMax: 5,
 
     starOn: '../images/star-on.png',
     starOff: '../images/star-off.png',
@@ -16,18 +18,31 @@ window.rating_binder = function() {
     $(this).text('I don\'t want to leave a rating');
     $("#rate").hide("slow");
 
-    $('#rating').raty({
+    $('#rate #rating').raty({
       targetType: 'score',
       targetKeep: true,
       target: '#review_star',
-      targetScore: null
+      targetScore: null,
+
+      numberMax: 5,
     });
 
   });
 
-  $('#rating_display').raty({
+  $('#story #rating_display').raty({
 
     readOnly: true,
+    numberMax: 5,
+
+    starOn: '../images/star-on.png',
+    starOff: '../images/star-off.png',
+
+  });
+
+  $('#map_asset #rating_display').raty({
+
+    readOnly: true,
+    numberMax: 5,
 
     starOn: '../images/star-on.png',
     starOff: '../images/star-off.png',

@@ -53,7 +53,7 @@
     <!-- Owner Check to allow Delete Option -->
     <% if user_signed_in? %>
       <% if @map_asset.user == current_user %>
-        <%= link_to 'Remove', delete_image_map_asset_path(img.signed_id), class:"btn btn-primary"
+        <%= link_to 'Remove', delete_image_map_asset_path(img.signed_id), class:"btn btn-primary", 
                   method: :delete,
                   data: { confirm: 'Are you sure?' } %><br>
       <% end %>
@@ -65,8 +65,12 @@
 <!-- End -->
     
 <br>
-
-<%= link_to 'Edit', edit_map_asset_path(@map_asset), class:"btn btn-primary btn-lg" %> |
+<!-- User Sign In Check to Allow Edit -->
+<% if user_signed_in? %>
+  <% if @map_asset.user == current_user %>
+    <%= link_to 'Edit', edit_map_asset_path(@map_asset), class:"btn btn-primary btn-lg" %> |
+  <% end %>
+<% end %>
 <%= link_to 'Back', map_assets_path, class:"btn btn-primary btn-lg" %>
 
 <br><br>

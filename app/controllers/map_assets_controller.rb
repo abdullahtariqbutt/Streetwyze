@@ -2,7 +2,11 @@ class MapAssetsController < ApplicationController
   before_action :set_asset, only: %i[show edit update destroy]
 
   def index
-    @map_assets = MapAsset.order(created_at: :desc)
+    if params[:query].present?
+      @map_assets = MapAsset.search(params[:query]).order(created_at: :desc)
+    else
+      @map_assets = MapAsset.order(created_at: :desc)
+    end
   end
 
   def show
@@ -53,6 +57,6 @@ class MapAssetsController < ApplicationController
     end
 
     def asset_params
-      params.require(:map_asset).permit(:user_id, :name, :address, :category, :leave_rating, :rating, :stuff_type, :description, images:[])
+      params.require(:map_asset).permit(:user_id, :name, :address, :category, :rating, :stuff_type, :description, images:[])
     end
 end

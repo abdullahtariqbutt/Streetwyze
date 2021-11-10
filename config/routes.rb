@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  
+
+  get 'search', to: "map_assets#index"
+
   resources :map_assets do
     member do
       delete :delete_image

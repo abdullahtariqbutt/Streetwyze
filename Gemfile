@@ -15,6 +15,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem "mini_magick"
 gem 'image_processing'
 gem "rmagick"
+gem 'pg_search'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

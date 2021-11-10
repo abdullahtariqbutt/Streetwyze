@@ -2,11 +2,37 @@ class MapAssetsController < ApplicationController
   before_action :set_asset, only: %i[show edit update destroy]
 
   def index
-    if params[:query].present?
-      @map_assets = MapAsset.search(params[:query]).order(created_at: :desc)
+
+    filters =[]
+
+    if params[:search].present?
+
+      params[:search].each do |key, value|
+        if key == "category"
+          filters << [:category_filter, value]
+        end
+        if key == "type"
+          filters << [:type_filter, value]
+        end
+      end
+
+      if filters.empty?
+        @map_assets = MapAsset.order(created_at: :desc)
+      else
+        @map_assets = MapAsset.send_chain(filters)
+      end
+
     else
       @map_assets = MapAsset.order(created_at: :desc)
+      
     end
+
+
+    # if params[:query].present?
+    #   @map_assets = MapAsset.search(params[:query]).order(created_at: :desc)
+    # else
+    #   @map_assets = MapAsset.order(created_at: :desc)
+    # end
   end
 
   def show

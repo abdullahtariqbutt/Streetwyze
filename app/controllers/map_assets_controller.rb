@@ -7,13 +7,16 @@ class MapAssetsController < ApplicationController
 
     if params[:search].present?
 
-      params[:search].each do |key, value|
-        if key == "category"
-          filters << [:category_filter, value]
+      if params[:search].has_key?(:keyword)
+        if !params[:search][:keyword].to_s.empty?
+          filters << [:search_keyword, params[:search][:keyword]]
         end
-        if key == "type"
-          filters << [:type_filter, value]
-        end
+      end
+      if params[:search].has_key?(:category)
+        filters << [:category_filter, params[:search][:category]]
+      end
+      if params[:search].has_key?(:type)
+        filters << [:type_filter, params[:search][:type]]
       end
 
       if filters.empty?
@@ -24,15 +27,8 @@ class MapAssetsController < ApplicationController
 
     else
       @map_assets = MapAsset.order(created_at: :desc)
-      
     end
 
-
-    # if params[:query].present?
-    #   @map_assets = MapAsset.search(params[:query]).order(created_at: :desc)
-    # else
-    #   @map_assets = MapAsset.order(created_at: :desc)
-    # end
   end
 
   def show

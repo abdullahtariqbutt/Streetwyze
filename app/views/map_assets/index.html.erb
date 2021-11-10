@@ -23,44 +23,39 @@
 </div>
 <!-- End of Modal Code -->
 
-<!-- Search Form -->
-<div class="container p-3">
+<!-- Filters Form -->
+<div class="container">
   <%= form_with url: search_path, method: :get do |form| %>
-    <%= form.label :query, "Search for:" %>
-    <div class="input input-group">
-      <%= form.text_field :query %>
-      <%= form.submit "Search" %>
+
+    <div class="field form-group">
+      <%= form.label "Category" %>
+      <%= form.select "search[category]", ["Art", "Education", "Health", "Business", "Enviroment", "Housing",
+                           "Child Care", "Food", "Industry", "Safety", "Transportation"], 
+                            {selected:"", disabled:"", prompt: 'Please select user'} %>  
     </div>
+
+    <div class="field form-group">
+      <%= form.label "Type of Stuff" %>
+      <br>
+      <%= form.radio_button "search[type]", "Good" %>
+      <%= form.label :Good %>
+      <%= form.radio_button "search[type]", "Bad" %>
+      <%= form.label :Bad %>
+      <%= form.radio_button "search[type]", "Fix" %>
+      <%= form.label :Fix %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label "Search" %>
+      <%= form.text_field "search[keyword]",value:"" %>
+    </div>
+
+    <div class="actions form-group">
+      <%= form.submit "Hit it" ,class:"btn btn-primary" %>
+    </div>
+
   <% end %>
-</div>
-<!-- End of Search Form -->
-
-<!-- Form filters -->
-<div class="bg-info">
-<%= form_with url: search_path, method: :get do |form| %>
-
-  <div class="field form-group">
-    <%= form.label "Category" %>
-    <%= form.select "search[category]", ["Art", "Education", "Health", "Business", "Enviroment", "Housing", "Child Care", "Food", "Industry", "Safety", "Transportation"] %>  
   </div>
-
-  <div class="field form-group">
-    <%= form.label "Type of Stuff" %>
-    <br>
-    <%= form.radio_button "search[type]", "Good" %>
-    <%= form.label :Good %>
-    <%= form.radio_button "search[type]", "Bad" %>
-    <%= form.label :Bad %>
-    <%= form.radio_button "search[type]", "Fix" %>
-    <%= form.label :Fix %>
-  </div>
-
-  <div class="actions form-group">
-    <%= form.submit "Search" ,class:"btn btn-primary" %>
-  </div>
-
-<% end %>
-</div>
 <!-- End -->
 
 <!-- Listing Assets -->

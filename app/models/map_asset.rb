@@ -10,5 +10,6 @@ class MapAsset < ApplicationRecord
   validates :name, :address, :category, :stuff_type, presence: true
   validates :description, length: { maximum: 2000, too_long: "%{count} characters is the maximum allowed" }
 
-  pg_search_scope :search, against: [:name, :address, :category, :rating, :stuff_type, :description]
+  pg_search_scope :search, against: [:name, :address, :category, :rating, :stuff_type],
+      using: { tsearch: { prefix: true, dictionary: "english" }  }
 end

@@ -3,6 +3,8 @@ module MapAssetsHelper
 
     filters =[]
 
+    
+    
     if params[:search].has_key?(:dob)
       start_date, end_date = params[:search][:dob].split(' - ')
       filters << [:having_dob_between, start_date, end_date]

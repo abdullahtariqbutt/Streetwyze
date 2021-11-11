@@ -6,10 +6,12 @@ window.date_pick = function() {
     var end = moment();
 
     function cb(start, end) {
-        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        $('date_field').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
     }
 
-    $('#reportrange').daterangepicker({
+    $('#date_field').daterangepicker({
+        autoUpdateInput: false,
+        locale: { cancelLabel: 'Clear'},
         startDate: start,
         endDate: end,
         ranges: {
@@ -23,6 +25,14 @@ window.date_pick = function() {
     }, cb);
 
     cb(start, end);
+
+    $('#date_field').on('apply.daterangepicker', function(ev, picker) {
+        $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+    });
+
+    $('#date_field').on('cancel.daterangepicker', function(ev, picker) {
+        $(this).val('');
+    });
 
 }
 

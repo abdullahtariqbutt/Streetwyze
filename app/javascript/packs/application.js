@@ -19,5 +19,10 @@ import "bootstrap";
 require('packs/raty.js')
 require("packs/rating.js")
 
+require('moment')
+require("daterangepicker")
+require("packs/pickdate.js")
+
+
 require("trix")
 require("@rails/actiontext")

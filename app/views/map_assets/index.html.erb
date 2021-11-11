@@ -65,28 +65,17 @@
       <%= form.label "Only Me" %>
     </div>
 
-    <div class="field form-group">
-      <%= form.label "Type of Stuff" %>
-      <br>
-      <%= form.radio_button "search[date]", "All" %>
-      <%= form.label "All" %>
-      <%= form.radio_button "search[date]", "Today" %>
-      <%= form.label "Today" %>
-      <%= form.radio_button "search[date]", "Yesterday" %>
-      <%= form.label "Yesterday" %>
-      <%= form.radio_button "search[date]", "Last 7 Days" %>
-      <%= form.label "Last 7 Days" %>
-      <%= form.radio_button "search[date]", "Last 30 Days" %>
-      <%= form.label "Last 30 Days" %>
-      <%= form.radio_button "search[date]", "This Month" %>
-      <%= form.label "This Month" %>
-      <%= form.radio_button "search[date]", "Last Month" %>
-      <%= form.label "Last Month" %>
-      <%= form.radio_button "search[date]", "Today" %>
-      <%= form.label "Today" %>
-      <%= form.radio_button "search[date]", "Yesterday" %>
-      <%= form.label "Yesterday" %>
+    <!-- Date Picker -->
+    <div id="date">
+      <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+
+        <i class="fa fa-calendar"></i>&nbsp;
+        <span></span>
+        <i class="fa fa-caret-down"></i>
+
+      </div>
     </div>
+    <!-- Date Picker End -->
 
     <div class="field form-group">
       <%= form.label "Search" %>

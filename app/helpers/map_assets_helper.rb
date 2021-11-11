@@ -22,5 +22,6 @@ module MapAssetsHelper
       filters << [:type_filter, params[:search][:type]]
     end
 
+    return filters
   end
 end

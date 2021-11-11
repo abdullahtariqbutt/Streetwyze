@@ -3,10 +3,26 @@ module MapAssetsHelper
 
     filters =[]
 
-    
-    
-    if params[:search].has_key?(:dob)
-      start_date, end_date = params[:search][:dob].split(' - ')
+    if params[:search].has_key?(:media)
+      if params[:search][:media] == "No Media"
+        filters << [:no_media]
+      elsif params[:search][:media] == "With Media"
+        filters << [:with_media]
+      else
+        filters << [:get_all]
+      end
+    end
+
+    if params[:search].has_key?(:author)
+      if params[:search][:author] == "Only Me"
+        filters << [:owner_record, current_user]
+      else
+        filters << [:all]
+      end
+    end
+
+    if params[:search].has_key?(:date)
+      start_date, end_date = params[:search][:date].split(' - ')
       filters << [:having_dob_between, start_date, end_date]
     end
 

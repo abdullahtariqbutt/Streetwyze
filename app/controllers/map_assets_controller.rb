@@ -7,6 +7,7 @@ class MapAssetsController < ApplicationController
     if params[:search].present?
       filter_scopes = add_scopes(params)
       if filter_scopes.empty?
+        puts("Filters where emty+++++++++++++++++++++++++++++++++++++++++++++++++++")
         @map_assets = MapAsset.order(created_at: :desc)
       else
         @map_assets = MapAsset.send_chain(filter_scopes)

@@ -46,6 +46,49 @@
     </div>
 
     <div class="field form-group">
+      <%= form.label "Media State" %>
+      <br>
+      <%= form.radio_button "search[media]", "All" %>
+      <%= form.label "All" %>
+      <%= form.radio_button "search[media]", "With Media" %>
+      <%= form.label "With Media" %>
+      <%= form.radio_button "search[media]", "No Media" %>
+      <%= form.label "No Media" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label "Author" %>
+      <br>
+      <%= form.radio_button "search[author]", "All" %>
+      <%= form.label "All" %>
+      <%= form.radio_button "search[author]", "Only Me" %>
+      <%= form.label "Only Me" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label "Type of Stuff" %>
+      <br>
+      <%= form.radio_button "search[date]", "All" %>
+      <%= form.label "All" %>
+      <%= form.radio_button "search[date]", "Today" %>
+      <%= form.label "Today" %>
+      <%= form.radio_button "search[date]", "Yesterday" %>
+      <%= form.label "Yesterday" %>
+      <%= form.radio_button "search[date]", "Last 7 Days" %>
+      <%= form.label "Last 7 Days" %>
+      <%= form.radio_button "search[date]", "Last 30 Days" %>
+      <%= form.label "Last 30 Days" %>
+      <%= form.radio_button "search[date]", "This Month" %>
+      <%= form.label "This Month" %>
+      <%= form.radio_button "search[date]", "Last Month" %>
+      <%= form.label "Last Month" %>
+      <%= form.radio_button "search[date]", "Today" %>
+      <%= form.label "Today" %>
+      <%= form.radio_button "search[date]", "Yesterday" %>
+      <%= form.label "Yesterday" %>
+    </div>
+
+    <div class="field form-group">
       <%= form.label "Search" %>
       <%= form.text_field "search[keyword]",value:"" %>
     </div>

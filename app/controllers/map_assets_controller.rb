@@ -1,34 +1,19 @@
 class MapAssetsController < ApplicationController
+  include MapAssetsHelper
+
   before_action :set_asset, only: %i[show edit update destroy]
 
   def index
-
-    filters =[]
-
     if params[:search].present?
-
-      if params[:search].has_key?(:keyword)
-        if !params[:search][:keyword].to_s.empty?
-          filters << [:search_keyword, params[:search][:keyword]]
-        end
-      end
-      if params[:search].has_key?(:category)
-        filters << [:category_filter, params[:search][:category]]
-      end
-      if params[:search].has_key?(:type)
-        filters << [:type_filter, params[:search][:type]]
-      end
-
-      if filters.empty?
+      filter_scopes = add_scopes(params)
+      if filter_scopes.empty?
         @map_assets = MapAsset.order(created_at: :desc)
       else
-        @map_assets = MapAsset.send_chain(filters)
+        @map_assets = MapAsset.send_chain(filter_scopes)
       end
-
     else
       @map_assets = MapAsset.order(created_at: :desc)
     end
-
   end
 
   def show

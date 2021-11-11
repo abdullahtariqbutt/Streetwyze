@@ -17,6 +17,7 @@ class MapAsset < ApplicationRecord
   # Defining Scopes 
   scope :category_filter, ->(category) { where("category = ?", category) }
   scope :type_filter, ->(type) { where("stuff_type = ?", type) }
+  scope :having_dob_between, ->(start_date, end_date) { where(dob: start_date..end_date) }
 
   pg_search_scope :search_keyword, against: [:name, :address, :category, :rating, :stuff_type],
       using: { tsearch: { prefix: true, dictionary: "english" }  }

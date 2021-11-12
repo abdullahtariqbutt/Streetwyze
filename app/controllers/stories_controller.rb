@@ -1,11 +1,20 @@
 class StoriesController < ApplicationController
-  include StoriesHelper
+  include SharedParams
 
   before_action :set_story, only: %i[show edit update destroy]
   before_action :set_asset, only: %i[new create]
 
   def index
-    @stories = Story.order(created_at: :desc)
+    if params[:search].present?
+      filter_scopes = add_scopes(params)
+      if filter_scopes.empty?
+        @stories = Story.order(created_at: :desc)
+      else
+        @stories = Story.send_chain(filter_scopes).order(created_at: :desc)
+      end
+    else
+      @stories = Story.order(created_at: :desc)
+    end
   end
 
   def show; end

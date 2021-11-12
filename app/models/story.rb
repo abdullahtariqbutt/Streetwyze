@@ -1,10 +1,16 @@
 class Story < ApplicationRecord
+
+  include PgSearch::Model
+  include ScopesAndValidatons
+
+  # Associations
   has_rich_text :description
   has_many_attached :images
-
   belongs_to :user
   belongs_to :map_asset
 
-  validates :name, :address, :category, :stuff_type, presence: true
-  validates :description, length: { maximum: 2000, too_long: "%{count} characters is the maximum allowed" }
+  def self.send_chain(methods)
+    methods.inject(self) { |result, method| result.send(*method) }
+  end
+
 end

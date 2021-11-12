@@ -20,9 +20,12 @@
     </p>
   </div>
 
-  <div id="map_asset">
-    <div id="rating_display" data-score="<%= @map_asset.rating %>"></div>
-  </div>
+  <p>
+    <strong>Rating:</strong>
+    <div id="map_asset">
+      <div id="rating_display" data-score="<%= @map_asset.rating %>"></div>
+    </div>
+  </p>
 </div>
 
 <p>
@@ -30,76 +33,25 @@
   <%= @map_asset.description %>
 </p>
 
-<!-- Image Dispaly Code -->
-<div>
-  <strong>Attachments:</strong>
-  <br><br>
+<!-- Image Dispaly -->
+<%= render 'display_images', map_asset: @map_asset %>
 
-  <% @map_asset.images.each do |img| %>
-
-    <% if img.variable? %>
-      <%= link_to image_tag(img.variant(resize: "100x100")), img %>
-      <br>
-    <% elsif img.previewable? %>
-      <%= link_to image_tag(img.preview(resize: "100x100")), img %>
-      <br>
-    <% elsif img.image? %>
-      <%= link_to image_tag(img, width:100), img %>
-      <br>
-    <% else %>
-      <%= link_to image.filename , rails_blog_path %>
-      <br>
-    <% end %>
-
-    <!-- Owner Check to allow Delete Option -->
-    <% if user_signed_in? %>
-      <% if @map_asset.user == current_user %>
-        <%= link_to 'Remove', delete_image_map_asset_path(img.signed_id), class:"btn btn-primary", 
-                  method: :delete,
-                  data: { confirm: 'Are you sure?' } %><br><br><br>
-      <% end %>
-    <% end %>
-    <!-- End -->
-
-  <% end %>
-</div>
-<!-- End -->
-    
 <br>
+
 <!-- User Sign In Check to Allow Edit -->
 <% if user_signed_in? %>
   <% if @map_asset.user == current_user %>
-    <%= link_to 'Edit', edit_map_asset_path(@map_asset), class:"btn btn-primary btn-lg" %> |
+    <%= link_to 'Edit', edit_map_asset_path(@map_asset), class:"btn btn-primary" %>
   <% end %>
 <% end %>
-<%= link_to 'Back', map_assets_path, class:"btn btn-primary btn-lg" %>
+<%= link_to 'Back', map_assets_path, class:"btn btn-primary" %>
 
 <br><br>
 
-<!-- User Signed in Requiredment to add Story -->
-<% if user_signed_in? %>
-  <%= link_to 'Add Story', new_map_asset_story_path(@map_asset), class: "btn btn-primary", data: { toggle: 'modal', target: '#new_story_modal', remote: true } %>
-<% else %>
-  <%= link_to 'Add Story', map_asset_path(@map_asset), class: "btn btn-primary"%>
-<% end %>
+<!-- Add Story using Modal and Ajax -->
+<%= render 'add_story', map_asset: @map_asset %>
 
-<!-- Modal Code -->
-<div class="modal fade" id="new_story_modal" tabindex="-1" aria-labelledby="StoryModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="new_story_modal_label">Add Story</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div id="new_story_form">
-      </div>
-    </div>
-  </div>
-</div>
-<!-- End -->
-
+<!-- Display Stories -->
 <h1>Stories</h1>
 
 <table>

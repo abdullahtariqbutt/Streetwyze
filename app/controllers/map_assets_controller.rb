@@ -1,5 +1,5 @@
 class MapAssetsController < ApplicationController
-  include MapAssetsHelper
+  include SharedParams
 
   before_action :set_asset, only: %i[show edit update destroy]
 
@@ -9,7 +9,7 @@ class MapAssetsController < ApplicationController
       if filter_scopes.empty?
         @map_assets = MapAsset.order(created_at: :desc)
       else
-        @map_assets = MapAsset.send_chain(filter_scopes)
+        @map_assets = MapAsset.send_chain(filter_scopes).order(created_at: :desc)
       end
     else
       @map_assets = MapAsset.order(created_at: :desc)

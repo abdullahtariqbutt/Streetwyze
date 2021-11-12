@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'search', to: "map_assets#index"
+  get 'search_assets', to: "map_assets#index"
+  get 'search_stories', to: "stories#index"
 
   resources :map_assets do
     member do
@@ -16,5 +17,5 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  root to: "users#index"
+  root to: "map_assets#index"
 end

@@ -6,13 +6,13 @@
   <td><%= asset.rating %></td>
   <td><%= asset.stuff_type %></td>
   <td><%= asset.description %></td>
-  <td><%= link_to 'Show', map_asset_path(asset) %></td>
+  <td><%= link_to 'Show', map_asset_path(asset), class:"btn btn-primary" %></td>
 
   <!-- User Sign In Check to Allow Edit and Delete -->
   <% if user_signed_in? %>
     <% if asset.user == current_user %>
-      <td><%= link_to 'Edit', edit_map_asset_path(asset) %></td>
-      <td><%= link_to 'Destroy', map_asset_path(asset), method: :delete, data: { confirm: 'Are you sure?' } %></td>      
+      <td><%= link_to 'Edit', edit_map_asset_path(asset), class:"btn btn-secondary" %></td>
+      <td><%= link_to 'Destroy', map_asset_path(asset), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>      
     <% end %>
   <% end %>
   <!-- End -->

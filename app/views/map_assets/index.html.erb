@@ -4,6 +4,8 @@
 <!-- Filters Form -->
 <%= render 'shared/search_form', target: search_assets_path %>
 
+<%= link_to 'Export CSV', map_assets_path(request.params.merge(format: "csv")), class:"btn btn-primary" %>
+
 <!-- Listing Assets -->
 <h1>Assets List</h1>
 

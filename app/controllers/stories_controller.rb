@@ -15,6 +15,11 @@ class StoriesController < ApplicationController
     else
       @stories = Story.order(created_at: :desc)
     end
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @stories.to_csv, filename: "Stories-#{Date.today}.csv" }
+    end
   end
 
   def show; end

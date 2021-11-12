@@ -1,5 +1,6 @@
 class MapAssetsController < ApplicationController
   include SharedParams
+  require 'csv'
 
   before_action :set_asset, only: %i[show edit update destroy]
 
@@ -13,6 +14,11 @@ class MapAssetsController < ApplicationController
       end
     else
       @map_assets = MapAsset.order(created_at: :desc)
+    end
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @map_assets.to_csv, filename: "Assets-#{Date.today}.csv" }
     end
   end
 

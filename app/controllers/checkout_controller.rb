@@ -11,19 +11,13 @@ class CheckoutController < ApplicationController
 	  	quantity:1,
 	  }],
 	  mode: 'payment',
-	  success_url: edit_user_registration_path,
-	  cancel_url: edit_user_registration_path,
+	  success_url: 'http://localhost:3000/users/edit',
+	  cancel_url: 'http://localhost:3000/users/edit',
 	})
 
 	respond_to do |format|
 	  format.js
 	end
-  end
-
-  def sucess
-  end
-
-  def failure
   end
 
 end

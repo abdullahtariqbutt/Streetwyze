@@ -5,7 +5,12 @@
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", readonly:true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_name %><br />
+    <%= f.text_field :user_name, autofocus: true %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -34,6 +39,10 @@
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
+
+  <br><br>
+
+  <%= button_to "Buy a Subscription",class:"btn btn-primary" %></p>
 <% end %>
 
 <h3>Cancel my account</h3>

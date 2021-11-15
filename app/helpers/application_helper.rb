@@ -14,10 +14,8 @@ module ApplicationHelper
   def is_gold_user(id)
     @user = User.find(id)
     if @user.is_premium_user == true
-      puts("user is Premium member")
       return true
     else
-      puts("user not a Premium member")
       return false
     end
   end

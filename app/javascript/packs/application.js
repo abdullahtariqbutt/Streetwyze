@@ -14,5 +14,4 @@ ActiveStorage.start()
 import $ from 'jquery';
 global.$ = jQuery;
 
-import 'stylesheets/applicaiton';
 import 'bootstrap';

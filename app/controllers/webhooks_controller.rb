@@ -24,8 +24,8 @@ class WebhooksController < ApplicationController
     case event.type
     when 'checkout.session.completed'
       session = event.data.object
-      @product = Product.find_by(price: session.amount_total)
-      @product.increment!(:sales_count)
+      @user = User.find(session.client_reference_id)
+      @user.is_premium_user = true # set user to gold member
     end
 
     render json: { message: 'success' }

@@ -1,0 +1,61 @@
+<%= form_with(model: @map_asset, local: false) do |form| %>
+
+  <div class="modal-body">
+
+    <% if @map_asset.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@map_asset.errors.count, "error") %> prohibited this asset from being saved:</h2>
+        <ul>
+          <% @map_asset.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, class:"form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :address %>
+      <%= form.text_field :address, class:"form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :category %>
+      <%= form.select :category, ["Art", "Education", "Health", "Business", "Enviroment", "Housing", "Child Care", "Food", "Industry", "Safety", "Transportation"] %>  
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :stuff_type %>
+      <br>
+      <%= form.radio_button :stuff_type, "Good" %>
+      <%= form.label :Good %>
+      <%= form.radio_button :stuff_type, "Bad" %>
+      <%= form.label :Bad %>
+      <%= form.radio_button :stuff_type, "Fix" %>
+      <%= form.label :Fix %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :description %>
+      <%= form.rich_text_area :description, class:"form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :images %>
+      <%= form.file_field :images, multiple: true, class:"form-control" %>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <div class="actions form-group">
+      <%= form.submit class:"btn btn-primary" %>
+    </div>
+    <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
+  </div>
+
+<% end %>

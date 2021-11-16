@@ -16,12 +16,11 @@ class StoriesController < ApplicationController
 
   def create
     @story = @map_asset.stories.new(story_params)
+    success = @story.save
 
     respond_to do |format|
-      if @story.save
-        format.html { redirect_to @story, notice: "Story Saved" }
-      else
-        format.html { render :new }
+      format.html do
+        if success; redirect_to @story, notice: "Story Saved" else render :new end
       end
       format.js
     end

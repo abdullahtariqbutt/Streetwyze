@@ -17,11 +17,11 @@ class MapAssetsController < ApplicationController
 
   def create
     @map_asset = MapAsset.new(asset_params)
+    success = @map_asset.save
+
     respond_to do |format|
-      if @map_asset.save
-        format.html { redirect_to @map_asset, notice: "Asset was successfully created." }
-      else
-        format.html { render :new }
+      format.html do 
+        if success; redirect_to @map_asset, notice: "Asset was successfully created." else render :new end
       end
       format.js
     end

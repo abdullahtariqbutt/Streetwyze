@@ -10,10 +10,6 @@ class SurveysController < ApplicationController
 
   def new
     @survey = Survey.new
-    3.times do
-      question = @survey.questions.build
-      4.times { question.answers.build }
-    end
   end
 
   def edit
@@ -25,10 +21,8 @@ class SurveysController < ApplicationController
     respond_to do |format|
       if @survey.save
         format.html { redirect_to @survey, notice: "Survey was successfully created." }
-        format.json { render :show, status: :created, location: @survey }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @survey.errors, status: :unprocessable_entity }
+        format.html { render :new}
       end
     end
   end
@@ -37,10 +31,8 @@ class SurveysController < ApplicationController
     respond_to do |format|
       if @survey.update(survey_params)
         format.html { redirect_to @survey, notice: "Survey was successfully updated." }
-        format.json { render :show, status: :ok, location: @survey }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @survey.errors, status: :unprocessable_entity }
+        format.html { render :edit }
       end
     end
   end
@@ -49,7 +41,6 @@ class SurveysController < ApplicationController
     @survey.destroy
     respond_to do |format|
       format.html { redirect_to surveys_url, notice: "Survey was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 
@@ -59,6 +50,6 @@ class SurveysController < ApplicationController
     end
 
     def survey_params
-      params.require(:survey).permit(:title, :script, questions_attributes:[:id, :content, :_destroy, answers_attributes: [:id, :content, :_destroy]] )
+      params.require(:survey).permit(:title, :script, questions_attributes:[:id, :content, :_destroy] )
     end
 end

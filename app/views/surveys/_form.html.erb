@@ -1,4 +1,4 @@
-<%= form_with(model: survey) do |form| %>
+<%= form_with(model: @survey) do |form| %>
   <% if survey.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
@@ -21,22 +21,15 @@
     <%= form.text_field :script %>
   </div>
 
-  <%= form.fields_for :questions do |builder| %>
-    <div class="field">
-      <%= builder.label :content, "Question" %>
-      <%= builder.text_area :content %>
-      <%= builder.check_box :_destroy %>
-      <%= builder.label :_destroy, "Remove Question" %>
-    </div>
-    <%= builder.fields_for :answers do |answer| %>
-      <div class="field">
-        <%= answer.label :content, "Answer" %>
-        <%= answer.text_area :content %>
-        <%= answer.check_box :_destroy %>
-        <%= answer.label :_destroy, "Remove Answer" %>
-      </div>
+  <h3>Questions</h3>
+  <div id='questions'>
+    <%= form.fields_for :questions do |question| %>
+      <%= render 'question_fields', :f => question %>
     <% end %>
-  <% end %>
+    <div class='links'>
+      <%= link_to_add_association 'add question', form, :questions %>
+    </div>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

@@ -10,16 +10,29 @@
   <%= @survey.script %>
 </p>
 
-<ol>
+
 <% @survey.questions.each do |question| %>
-  <li><%= question.content %></li>
-    <ol>
-      <% question.answers.each do |answer| %>
-        <li><%= answer.content %></li> 
-      <% end %>
-    </ol>
+  <h2><%= question.content %></h2>
+
+  <% case question.question_type %>
+  <% when 'smiley_based' %>
+    <% question.answers.each do |answer| %>
+      <p>
+        <%= radio_button_tag question.id, answer.id %>
+        <%= answer.content %>
+      </p>
+    <% end %>
+  <% when 'multiple_choice' %>
+    <% question.answers.each do |answer| %>
+      <p>
+        <%= check_box_tag question.id, answer.id %>
+        <%= answer.content %>
+      </p>
+    <% end %>
+  <% when 'open_ended' %>
+    <%= text_area_tag question.id %>
+  <% end %>
 <% end %>
-</ol>
 
 <%= link_to 'Edit', edit_survey_path(@survey) %> |
 <%= link_to 'Back', surveys_path %>

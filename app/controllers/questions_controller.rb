@@ -50,6 +50,6 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:survey_id, :content, :question_type, answers_attributes: [:id, :content, :_destroy])
+      params.require(:question).permit(:survey_id, :content, :question_type)
     end
 end

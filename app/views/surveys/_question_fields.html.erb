@@ -1,7 +1,19 @@
- <div class='nested-fields'>
-    <div class="field">
-      <%= f.label :content %>
-      <%= f.text_field :content %>
-    </div>
-    <%= link_to_remove_association 'remove task', f %>
+<div class='nested-fields'>
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_field :content %>
   </div>
+  <%= link_to_remove_association 'Remove Question', f %>
+
+  <h5 class="pl-5">Answers</h5>
+  <div id='answers'>
+    <%= f.fields_for :answers do |answer| %>
+      <%= render 'answer_fields', :f => answer %>
+    <% end %>
+    <div class='links'>
+      <%= link_to_add_association 'Add Answer', f, :answers %>
+    </div>
+  </div>
+</div>
+
+

@@ -21,17 +21,31 @@
     <%= form.text_field :script %>
   </div>
 
-  <h3>Questions</h3>
-  <div id='questions'>
+  <!-- Code to view and add questions -->
+  <div data-controller="nested-form">
+    <template data-nested-form-target='template'>
+      <%= form.fields_for :questions, Question.new, child_index: 'TEMPLATE_RECORD' do |question| %>
+        <%= render 'question_fields', form: question %>
+      <% end %>
+    </template>
+
     <%= form.fields_for :questions do |question| %>
-      <%= render 'question_fields', :f => question %>
+      <%= render 'question_fields', form: question %>
     <% end %>
-    <div class='links'>
-      <%= link_to_add_association 'Add Question', form, :questions %>
+
+    <div data-nested-form-target="add_item">
+      <%= link_to "Add Question", "#", data: { action: "nested-form#add_association" } %>
     </div>
   </div>
+  <!-- End of questions code -->
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+
+
+
+
+

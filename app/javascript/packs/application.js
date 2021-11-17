@@ -17,3 +17,5 @@ global.$ = jQuery;
 import 'bootstrap';
 
 require("@nathanvda/cocoon")
+
+import 'controllers'

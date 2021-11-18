@@ -21,7 +21,7 @@
       <strong>Stuff Type:</strong>
       <%= @map_asset.stuff_type %>
     </p>
-    
+
   </div>
   <div id="map_asset">
     <div id="rating_display" data-score="<%= @map_asset.rating %>"></div>
@@ -33,21 +33,7 @@
   <%= @map_asset.description %>
 </p>
 
-<div>
-  <strong>Attachments:</strong>
-  <br>
-  <% @map_asset.images.each do |img| %>
-    <% if img.variable? %>
-      <%= link_to image_tag(img.variant(resize: "400x400")), img %>
-    <% elsif img.previewable? %>
-      <%= link_to image_tag(img.preview(resize: "400x400")), img %>
-    <% elsif img.image? %>
-      <%= link_to image_tag(img, width:400), img %>
-    <% else %>
-      <%= link_to image.filename , rails_blog_path %>
-    <% end %>
-  <% end %>
-</div>
+<%= render "shared/display_uploads", target:@map_asset %>
 
 <br>
 

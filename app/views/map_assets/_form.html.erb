@@ -2,16 +2,7 @@
 
   <div class="modal-body">
 
-    <% if @map_asset.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@map_asset.errors.count, "error") %> prohibited this asset from being saved:</h2>
-        <ul>
-          <% @map_asset.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+    <%= render 'shared/errors', t: @map_asset %>
 
     <div class="field form-group">
       <%= form.label :name %>
@@ -45,8 +36,8 @@
     </div>
 
     <div class="field form-group">
-      <%= form.label :images %>
-      <%= form.file_field :images, multiple: true, class:"form-control" %>
+      <%= form.label :uploads %>
+      <%= form.file_field :uploads, multiple: true, class:"form-control" %>
     </div>
 
   </div>

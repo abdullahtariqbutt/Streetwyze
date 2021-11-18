@@ -1,0 +1,15 @@
+<div>
+  <strong>Attachments:</strong>
+  <br>
+  <% target.uploads.each do |upload| %>
+    <% if upload.variable? %>
+      <%= link_to image_tag(upload.variant(resize: "400x400")), upload %>
+    <% elsif upload.previewable? %>
+      <%= link_to image_tag(upload.preview(resize: "400x400")), upload %>
+    <% elsif upload.image? %>
+      <%= link_to image_tag(upload, width:400), upload %>
+    <% else %>
+      <%= link_to image.filename , rails_blog_path %>
+    <% end %>
+  <% end %>
+</div>

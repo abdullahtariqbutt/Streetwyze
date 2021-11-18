@@ -1,26 +1,18 @@
-<%= form_with(model: @story, url: [@map_asset, @map_asset.stories.build], local:false) do |form| %>
+<%= form_with(model: target, local:false) do |form| %>
 
   <div class="modal-body">
 
-    <% if @story.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@story.errors.count, "error") %> prohibited this story from being saved:</h2>
-        <ul>
-          <% @story.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+    <!-- target 0 for map_assets and 1 for story if new ==== target 0 for story if edit -->
+    <%= render 'shared/errors', t: @story %> 
 
     <div class="field form-group">
       <%= form.label :name %>
-      <%= form.text_field :name, class:"form-control", readonly: true , value: @map_asset.name %>
+      <%= form.text_field :name, class:"form-control", readonly: true , value: map_asset.name %>
     </div>
 
     <div class="field form-group">
       <%= form.label :address %>
-      <%= form.text_field :address, class:"form-control", readonly: true, value: @map_asset.address %>
+      <%= form.text_field :address, class:"form-control", readonly: true, value: map_asset.address %>
     </div>
 
     <div class="field form-group">
@@ -55,8 +47,8 @@
     </div>
 
     <div class="field form-group">
-      <%= form.label :images %>
-      <%= form.file_field :images, multiple: true, class:"form-control" %>
+      <%= form.label :uploads %>
+      <%= form.file_field :uploads, multiple: true, class:"form-control" %>
     </div>
 
   </div>

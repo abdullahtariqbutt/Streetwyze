@@ -1,5 +1,5 @@
 class StoriesController < ApplicationController
-  before_action :set_story, only: %i[show edit update destroy]
+  before_action :find_story, only: %i[show edit update destroy]
   before_action :find_map_asset, only: %i[new create]
 
   def index
@@ -9,18 +9,22 @@ class StoriesController < ApplicationController
   def show; end
 
   def new
-    @story = @map_asset.stories.new
+    @story = @map_asset.stories.build
   end
 
   def edit; end
 
   def create
-    @story = @map_asset.stories.new(story_params)
+    @story = @map_asset.stories.build(story_params)
     success = @story.save
 
     respond_to do |format|
       format.html do
-        if success; redirect_to @story, notice: "Story Saved" else render :new end
+        if success
+          redirect_to @story, notice: "Story Saved"
+        else
+          render :new
+        end
       end
       format.js
     end
@@ -41,7 +45,7 @@ class StoriesController < ApplicationController
 
   private
 
-    def set_story
+    def find_story
       @story = Story.find(params[:id])
     end
 
@@ -50,6 +54,6 @@ class StoriesController < ApplicationController
     end
 
     def story_params
-      params.require(:story).permit(:name, :address, :category, :rating, :stuff_type, :description, images:[])
+      params.require(:story).permit(:name, :address, :category, :rating, :stuff_type, :description, uploads: [])
     end
 end

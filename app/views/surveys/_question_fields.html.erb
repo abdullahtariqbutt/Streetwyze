@@ -1,45 +1,58 @@
+<!-- Using dynamic-select JS controller -->
 <div class='nested-fields box' data-controller='dynamic-select'>
   <!-- Code to select question type -->
   <div class='form-group'>
+    <!-- question_type_select function is in question model -->
     <%= form.select :question_type,
         options_for_select(Question.question_type_select, selected: form.object.question_type),
         {},
         'data-dynamic-select-target': 'select',
         'data-action': 'dynamic-select#selected' %>
   </div>
+
   <!-- End question type code -->
 
+  <!-- Code to remove question -->
   <div class='form-group'>
     <%= form.hidden_field :_destroy %>
     <%= form.text_field :content, placeholder: 'Question', class: 'form-control' %>
     <small>
+      <!-- Specifing in data, which action will be performed when clicked -->
       <%= link_to "Remove", "#", data: { action: "click->nested-form#remove_association" } %>
     </small>
   </div>
+  <!-- End question remove code -->
 
-  <!-- Code to view and add answers -->
-  <!-- Code to select multiple choice based answers -->
+  <!-- ================================ Code to view and add answers ================================ -->
+  <!-- Code to view and add multiple choice based answer-->
+  <!-- Template that would be same for every answer -->
+  <!-- Template element is not displayed on the screen by default -->
   <div data-controller="nested-form" data-dynamic-select-target='choice'>
     <template data-nested-form-target='template'>
+      <!-- A timestamp will be added at TEMPLATE_RECORD -->
       <%= form.fields_for :answers, Answer.new, child_index: 'TEMPLATE_RECORD' do |answer| %>
         <%= render 'answer_fields', form: answer %>
       <% end %>
     </template>
 
+    <!-- Code to display already associated questions with the survey -->
     <%= form.fields_for :answers do |answer| %>
       <%= render 'answer_fields', form: answer %>
     <% end %>
 
+    <!-- Code to add New Question -->
     <div data-nested-form-target="add_item">
+      <!-- Specifing in data, which action will be performed when clicked -->
       <%= link_to "Add Answer", "#", data: { action: "nested-form#add_association" } %>
     </div>
   </div>
-  <!-- End -->
 
-  <!-- Code to select smiley based answers -->
+  <!-- Code to view and add simley based answer-->
+  <!-- <div data-controller="nested-form" data-dynamic-select-target='smiley'>
+  </div> -->
   <!-- End -->
  
-  <!-- Code to select Text based answers -->
+  <!-- Code to view and add text based answer-->
   <div data-controller="nested-form" data-dynamic-select-target='long'>
   </div>
   <!-- End -->

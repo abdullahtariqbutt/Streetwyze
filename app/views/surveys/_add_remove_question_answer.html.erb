@@ -1,0 +1,24 @@
+<!-- Using nested-form JS controller -->
+  <div data-controller="nested-form">
+
+    <!-- Template that would be same for every quetion -->
+    <!-- Template element is not displayed on the screen by default -->
+    <template data-nested-form-target='template'>
+      <!-- A timestamp will be added at TEMPLATE_RECORD -->
+      <%= form.fields_for :questions, Question.new, child_index: 'TEMPLATE_RECORD' do |question| %>
+        <%= render 'question_fields', form: question %>
+      <% end %>
+    </template>
+
+    <!-- Code to display already associated questions with the survey -->
+    <%= form.fields_for :questions do |question| %>
+      <%= render 'question_fields', form: question %>
+    <% end %>
+
+    <!-- Code to add New Question -->
+    <div data-nested-form-target="add_item">
+      <!-- Specifing in data, which action will be performed when clicked -->
+      <%= link_to "Add Question", "#", data: { action: "nested-form#add_association" } %>
+    </div>
+
+  </div>

@@ -1,12 +1,14 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
+  // "add_item" and "template" are static tags in the view and will not change
   static targets = ["add_item", "template"]
 
   // Code to add new Question or Answer
   add_association(event) {
     event.preventDefault()
-    // Get the template defined in form view in <template> tags and add a unique id with it using time
+    // Get the template defined in form view in <template> tags and add a unique id with it using time for
+    // every question/answer added
     var content = this.templateTarget.innerHTML.replace(/TEMPLATE_RECORD/g, new Date().getTime())
     // Add the template to the page
     this.add_itemTarget.insertAdjacentHTML('beforebegin', content)

@@ -22,20 +22,26 @@
   </div>
 
   <!-- Code to view and add questions -->
+  <!-- Using nested-form JS controller -->
   <div data-controller="nested-form">
+
+    <!-- Template that would be same for every quetion -->
     <template data-nested-form-target='template'>
       <%= form.fields_for :questions, Question.new, child_index: 'TEMPLATE_RECORD' do |question| %>
         <%= render 'question_fields', form: question %>
       <% end %>
     </template>
 
+    <!-- Code to display already added questions -->
     <%= form.fields_for :questions do |question| %>
       <%= render 'question_fields', form: question %>
     <% end %>
 
+    <!-- Code to add New Question -->
     <div data-nested-form-target="add_item">
       <%= link_to "Add Question", "#", data: { action: "nested-form#add_association" } %>
     </div>
+
   </div>
   <!-- End of questions code -->
 

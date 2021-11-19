@@ -9,5 +9,12 @@ class User < ApplicationRecord
 
   validates :user_name, format: { with: USERNAME_REGEX , message: " must have one special character and only have a max of 30 characters" }
   validates :password, format: { with: PASSWORD_REGEX, message: "should be minimum 8 characters long with atleast one Capital and one Special character" }
-  
+
+  enum role: [:common, :admin]
+
+  after_initialize do
+    if self.new_record?
+      self.role ||= :common
+    end
+  end
 end

@@ -6,8 +6,6 @@
         {},
         'data-dynamic-select-target': 'select',
         'data-action': 'change->dynamic-select#selected' %>
-
-        <p> This is it <%= form.object.question_type %></p>
   </div>
 
   <div class='form-group'>
@@ -18,55 +16,6 @@
     </small>
   </div>
 
-
-  <div data-controller="nested-form" data-nested-form-index-value='ANSWER_RECORD' data-dynamic-select-target='choice'>
-
-    <template data-nested-form-target='template'>
-      <%= form.fields_for :answers, Answer.new, child_index: 'ANSWER_RECORD' do |answer| %>
-      ANSWER - ANSWER_RECORD
-        <%= render 'text_answer_fields', form: answer %>
-      <% end %>
-    </template>
-
-    <%= form.fields_for :answers do |answer| %>
-      <%= render 'text_answer_fields', form: answer %>
-    <% end %>
-
-    <div data-nested-form-target="add_item">
-      <%= link_to "Add Answer", "#", data: { action: "nested-form#add_association" } %>
-    </div>
-
-  </div>
-
-
-  <div data-controller="nested-form" data-nested-form-index-value='ANSWER_RECORD' data-dynamic-select-target='smile'>
-
-    <template data-nested-form-target='template'>
-      <%= form.fields_for :answers, Answer.new, child_index: 'ANSWER_RECORD' do |answer| %>
-      ANSWER - ANSWER_RECORD
-        <%= render 'smiley_answer_fields', form: answer %>
-      <% end %>
-    </template>
-
-    <%= form.fields_for :answers do |answer| %>
-      <%= render 'smiley_answer_fields', form: answer %>
-    <% end %>
-
-  </div>
-
-  <div data-controller="nested-form" data-nested-form-index-value='ANSWER_RECORD' data-dynamic-select-target='long'>
-
-    <template data-nested-form-target='template'>
-      <%= form.fields_for :answers, Answer.new, child_index: 'ANSWER_RECORD' do |answer| %>
-      ANSWER - ANSWER_RECORD
-        <%= render 'text_answer_fields', form: answer %>
-      <% end %>
-    </template>
-
-    <%= form.fields_for :answers do |answer| %>
-      <%= render 'text_answer_fields', form: answer %>
-    <% end %>
-
-  </div>
+  <%= render "answer_fields", form: form, survey: survey%>
 
 </div>

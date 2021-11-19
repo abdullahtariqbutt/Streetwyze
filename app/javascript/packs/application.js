@@ -14,9 +14,6 @@ ActiveStorage.start()
 import $ from 'jquery';
 global.$ = jQuery;
 
-import 'bootstrap';
-
-require("@nathanvda/cocoon")
-
-import '@hotwired/turbo-rails'
 import 'controllers'
+
+import 'bootstrap';

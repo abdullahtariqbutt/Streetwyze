@@ -45,6 +45,7 @@ class SurveysController < ApplicationController
   end
 
   private
+
     def set_survey
       @survey = Survey.find(params[:id])
     end

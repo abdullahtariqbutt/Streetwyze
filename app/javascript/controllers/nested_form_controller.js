@@ -1,29 +1,29 @@
-import { Controller } from "stimulus"
+import { Controller } from "stimulus";
 
 export default class extends Controller {
 
   connect() {
-    console.log("hello from Nested form contoller")
+    console.log("hello from Nested form contoller");
   }
 
-  static targets = ["add_item", "template"]
-  static values = {index: String}
+  static targets = ["add_item", "template"];
+  static values = {index: String};
 
   add_association(event) {
-    event.preventDefault()
+    event.preventDefault();
 
-    var content = this.templateTarget.innerHTML.replace(new RegExp(this.indexValue, 'g'), new Date().getTime())
+    var content = this.templateTarget.innerHTML.replace(new RegExp(this.indexValue, 'g'), new Date().getTime());
 
-    this.add_itemTarget.insertAdjacentHTML('beforebegin', content)
+    this.add_itemTarget.insertAdjacentHTML('beforebegin', content);
   }
 
   remove_association(event) {
-    event.preventDefault()
+    event.preventDefault();
 
-    let item = event.target.closest(".nested-fields")
+    let item = event.target.closest(".nested-fields");
 
-    item.querySelector("input[name*='_destroy']").value = 1
+    item.querySelector("input[name*='_destroy']").value = 1;
 
-    item.style.display = 'none'
+    item.style.display = 'none';
   }
 }

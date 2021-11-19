@@ -1,0 +1,25 @@
+<div data-controller="nested-form" data-nested-form-index-value='ANSWER_RECORD' data-dynamic-select-target='choice'>
+
+  <template data-nested-form-target='template'>
+    <%= form.fields_for :answers, Answer.new, child_index: 'ANSWER_RECORD' do |answer| %>
+    ANSWER - ANSWER_RECORD
+      <%= render 'text_answer_fields', form: answer %>
+    <% end %>
+  </template>
+
+  <%= form.fields_for :answers do |answer| %>
+    <%= render 'text_answer_fields', form: answer %>
+  <% end %>
+
+  <div data-nested-form-target="add_item">
+    <%= link_to "Add Answer", "#", data: { action: "nested-form#add_association" } %>
+  </div>
+
+</div>
+
+<div data-controller="nested-form" data-nested-form-index-value='ANSWER_RECORD' data-dynamic-select-target='smile'>
+</div>
+
+<div data-controller="nested-form" data-nested-form-index-value='ANSWER_RECORD' data-dynamic-select-target='long'>
+
+</div>

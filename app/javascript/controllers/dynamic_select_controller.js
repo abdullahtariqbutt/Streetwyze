@@ -5,12 +5,23 @@ export default class extends Controller {
 
   connect() {
     console.log("hello from Dynamic Select");
-    this.selected();
+    this.hideFields();
+    this.displayFields('open_ended');
   }
 
-  selected() {
-    this.hideFields()
-    switch (this.selectedTarget.value) {
+  selected(event) {
+    this.hideFields();
+    this.displayFields(event.target.value)
+  }
+
+  hideFields() {
+    this.choiceTarget.classList.add('hidden');
+    this.longTarget.classList.add('hidden');
+    this.smileTarget.classList.add('hidden');
+  }
+
+  displayFields(value) {
+    switch (value) {
       case 'smiley_based':
         console.log("Smiley Section Shown");
         this.smileTarget.classList.remove('hidden');
@@ -24,11 +35,5 @@ export default class extends Controller {
         this.longTarget.classList.remove('hidden');
         break;
     }
-  }
-
-  hideFields() {
-    this.choiceTarget.classList.add('hidden');
-    this.longTarget.classList.add('hidden');
-    this.smileTarget.classList.add('hidden');
   }
 }

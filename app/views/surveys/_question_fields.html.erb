@@ -5,7 +5,9 @@
         options_for_select(Question.question_type_select, selected: form.object.question_type),
         {},
         'data-dynamic-select-target': 'select',
-        'data-action': 'dynamic-select#selected' %>
+        'data-action': 'change->dynamic-select#selected' %>
+
+        <p> This is it <%= form.object.question_type %></p>
   </div>
 
   <div class='form-group'>
@@ -15,10 +17,6 @@
       <%= link_to "Remove", "#", data: { action: "click->nested-form#remove_association" } %>
     </small>
   </div>
-
-
-
-
 
 
   <div data-controller="nested-form" data-nested-form-index-value='ANSWER_RECORD' data-dynamic-select-target='choice'>
@@ -41,8 +39,6 @@
   </div>
 
 
-
-
   <div data-controller="nested-form" data-nested-form-index-value='ANSWER_RECORD' data-dynamic-select-target='smile'>
 
     <template data-nested-form-target='template'>
@@ -58,9 +54,6 @@
 
   </div>
 
-
-
-
   <div data-controller="nested-form" data-nested-form-index-value='ANSWER_RECORD' data-dynamic-select-target='long'>
 
     <template data-nested-form-target='template'>
@@ -75,10 +68,5 @@
     <% end %>
 
   </div>
-
-
-
-
-
 
 </div>

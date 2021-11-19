@@ -18,4 +18,5 @@ import 'bootstrap';
 
 require("@nathanvda/cocoon")
 
+import '@hotwired/turbo-rails'
 import 'controllers'

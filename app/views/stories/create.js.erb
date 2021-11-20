@@ -9,6 +9,7 @@
     <% @story.map_asset.update(rating: calulate_avg_rating(@story.map_asset)) %>
   <% end %>
 
+  location.reload(); // User this for the time being
   $("#stories_table").prepend("<%= j render('shared/story_row', story: @story) %>");
   $(".close-modal").click();
 

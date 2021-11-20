@@ -16,18 +16,12 @@
 
     <div class="field form-group">
       <%= form.label :category %>
-      <%= form.select :category, ["Art", "Education", "Health", "Business", "Enviroment", "Housing", "Child Care", "Food", "Industry", "Safety", "Transportation"] %>  
+      <%= form.select :category, get_categories() %>
     </div>
 
     <div class="field form-group">
       <%= form.label :stuff_type %>
-      <br>
-      <%= form.radio_button :stuff_type, "Good" %>
-      <%= form.label :Good %>
-      <%= form.radio_button :stuff_type, "Bad" %>
-      <%= form.label :Bad %>
-      <%= form.radio_button :stuff_type, "Fix" %>
-      <%= form.label :Fix %>
+      <%= form.select :stuff_type, get_stuff_type() %>
     </div>
 
     <div class="field form-group">

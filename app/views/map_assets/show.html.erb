@@ -30,42 +30,10 @@
   <%= @map_asset.description %>
 </p>
 
-<!-- Image Dispaly Code -->
-<div>
-  <strong>Attachments:</strong>
-  <br><br>
+<%= render "shared/display_uploads", target: @map_asset %>
 
-  <% @map_asset.images.each do |img| %>
-
-    <% if img.variable? %>
-      <%= link_to image_tag(img.variant(resize: "100x100")), img %>
-      <br>
-    <% elsif img.previewable? %>
-      <%= link_to image_tag(img.preview(resize: "100x100")), img %>
-      <br>
-    <% elsif img.image? %>
-      <%= link_to image_tag(img, width:100), img %>
-      <br>
-    <% else %>
-      <%= link_to image.filename , rails_blog_path %>
-      <br>
-    <% end %>
-
-    <!-- Owner Check to allow Delete Option -->
-    <% if user_signed_in? %>
-      <% if @map_asset.user == current_user %>
-        <%= link_to 'Remove', delete_image_map_asset_path(img.signed_id), class:"btn btn-primary", 
-                  method: :delete,
-                  data: { confirm: 'Are you sure?' } %><br><br><br>
-      <% end %>
-    <% end %>
-    <!-- End -->
-
-  <% end %>
-</div>
-<!-- End -->
-    
 <br>
+
 <!-- User Sign In Check to Allow Edit -->
 <% if user_signed_in? %>
   <% if @map_asset.user == current_user %>
@@ -73,6 +41,8 @@
   <% end %>
 <% end %>
 <%= link_to 'Back', map_assets_path, class:"btn btn-primary btn-lg" %>
+
+<%= render "shared/display_uploads", target: @map_asset %>
 
 <br><br>
 

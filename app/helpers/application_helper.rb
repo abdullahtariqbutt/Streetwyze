@@ -10,4 +10,15 @@ module ApplicationHelper
     c = subsets.sample(length).join
     "username" + c
   end
+
+  STUFFTYPE = ["Good", "Bad", "Fix"]
+  CATEGORIES = ["Art", "Education", "Health", "Business", "Enviroment", "Housing", "Child Care", "Food", "Industry", "Safety", "Transportation"]
+
+  def get_categories
+    CATEGORIES
+  end
+
+  def get_stuff_type
+    STUFFTYPE
+  end
 end

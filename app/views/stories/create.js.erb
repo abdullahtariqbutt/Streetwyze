@@ -1,6 +1,6 @@
 <% if @story.errors.any? %>
 
-  $("#new_story_form").html("<%= j render('form', story: @story) %>");
+  $("#new_story_form").html("<%= j render('form', target: [@map_asset, @story], map_asset: @map_asset) %>");
   rating_binder();
 
 <% else %>

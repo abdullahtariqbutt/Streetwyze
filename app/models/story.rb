@@ -11,8 +11,16 @@ class Story < ApplicationRecord
   belongs_to :user
   belongs_to :map_asset
 
+  after_commit :average_calculate
+
   def self.send_chain(methods)
     methods.inject(self) { |result, method| result.send(*method) }
   end
 
+  def average_calculate
+    if rating.present?
+      average = Average.new(map_asset)
+      map_asset.update(rating: average.rating_avg)
+    end
+  end
 end

@@ -1,17 +1,19 @@
 class MapAssetsController < ApplicationController
-  include SharedParams
-
 
   before_action :find_asset, only: %i[show edit update destroy]
 
   def index
     if params[:search].present?
-      filter_scopes = add_scopes(params)
-      if filter_scopes.empty?
+
+      records = Records.new(params)
+      filtered_query = records.get_query
+
+      if filtered_query.empty?
         @map_assets = MapAsset.order(created_at: :desc)
       else
-        @map_assets = MapAsset.send_chain(filter_scopes).order(created_at: :desc)
+        @map_assets = MapAsset.send_chain(filtered_query).order(created_at: :desc)
       end
+
     else
       @map_assets = MapAsset.order(created_at: :desc)
     end

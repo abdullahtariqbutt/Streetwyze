@@ -6,11 +6,13 @@ class StoriesController < ApplicationController
 
   def index
     if params[:search].present?
-      filter_scopes = add_scopes(params)
-      if filter_scopes.empty?
+      records = Records.new(params)
+      filtered_query = records.get_query
+
+      if filtered_query.empty?
         @stories = Story.order(created_at: :desc)
       else
-        @stories = Story.send_chain(filter_scopes).order(created_at: :desc)
+        @stories = Story.send_chain(filtered_query).order(created_at: :desc)
       end
     else
       @stories = Story.order(created_at: :desc)
@@ -73,4 +75,6 @@ class StoriesController < ApplicationController
     def story_params
       params.require(:story).permit(:user_id, :name, :address, :category, :rating, :stuff_type, :description, uploads: [])
     end
+
+
 end

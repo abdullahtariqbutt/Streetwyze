@@ -3,7 +3,7 @@ class Story < ApplicationRecord
   include PgSearch::Model
   include Scopes
   include Validations
-  include Functions
+  include Attributes
 
   # Associations
   has_rich_text :description

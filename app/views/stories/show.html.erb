@@ -1,0 +1,34 @@
+<p>
+  <strong>Name:</strong>
+  <%= @story.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @story.address %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @story.category %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @story.rating %>
+</p>
+
+<p>
+  <strong>Stuff type:</strong>
+  <%= @story.stuff_type %>
+</p>
+
+<p>
+  <strong>Story:</strong>
+  <%= @story.description %>
+</p>
+
+<%= render "shared/display_uploads", target:@story %>
+
+<%= link_to 'Edit', edit_story_path(@story) %> |
+<%= link_to 'Back', stories_path %>

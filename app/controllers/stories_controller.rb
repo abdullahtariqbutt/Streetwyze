@@ -75,6 +75,4 @@ class StoriesController < ApplicationController
     def story_params
       params.require(:story).permit(:user_id, :name, :address, :category, :rating, :stuff_type, :description, uploads: [])
     end
-
-
 end

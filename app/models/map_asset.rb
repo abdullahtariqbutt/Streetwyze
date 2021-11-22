@@ -1,11 +1,13 @@
 class MapAsset < ApplicationRecord
 
   include PgSearch::Model
-  include ScopesAndValidatons
+  include Scopes
+  include Validations
 
   # Associations
   has_rich_text :description
-  has_many_attached :images
+  has_many_attached :uploads
+
   belongs_to :user
   has_many :stories, dependent: :destroy
 

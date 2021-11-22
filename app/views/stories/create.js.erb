@@ -1,10 +1,17 @@
 <% if @story.errors.any? %>
-  $("#new_story_form").html("<%= j render('form', story: @story) %>");
+
+  $("#new_story_form").html("<%= j render('form', target: [@map_asset, @story], map_asset: @map_asset) %>");
   rating_binder();
+
 <% else %>
+
   <% if @story.rating.present? %>
     <% @story.map_asset.update(rating: calulate_avg_rating(@story.map_asset)) %>
   <% end %>
+
+  location.reload(); // User this for the time being
+
   $("#stories_table").prepend("<%= j render('shared/story_row', story: @story) %>");
   $(".close-modal").click();
+
 <% end %>

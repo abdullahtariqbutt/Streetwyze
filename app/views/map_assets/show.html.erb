@@ -33,8 +33,7 @@
   <%= @map_asset.description %>
 </p>
 
-<!-- Image Dispaly -->
-<%= render 'display_images', map_asset: @map_asset %>
+<%= render "shared/display_uploads", target: @map_asset %>
 
 <br>
 
@@ -49,7 +48,9 @@
 <br><br>
 
 <!-- Add Story using Modal and Ajax -->
-<%= render 'add_story', map_asset: @map_asset %>
+<% if user_signed_in? %>
+  <%= render 'add_story', map_asset: @map_asset %>
+<% end %>
 
 <!-- Display Stories -->
 <h1>Stories</h1>

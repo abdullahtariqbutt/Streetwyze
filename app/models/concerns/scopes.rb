@@ -1,8 +1,7 @@
-module ScopesAndValidatons
+module Scopes
   extend ActiveSupport::Concern
 
   included do
-    # Scopes
     scope :get_all, -> { all }
     scope :type_filter, ->(type) { where("stuff_type = ?", type) }
     scope :category_filter, ->(category) { where("category = ?", category) }
@@ -13,9 +12,5 @@ module ScopesAndValidatons
 
     pg_search_scope :search_keyword, against: [:name, :address, :category, :rating, :stuff_type],
         using: { tsearch: { prefix: true, dictionary: "english" }  }
-
-    # Validations
-    validates :name, :address, :category, :stuff_type, presence: true
-    validates :description, length: { maximum: 2000, too_long: "%{count} characters is the maximum allowed" }
   end
 end

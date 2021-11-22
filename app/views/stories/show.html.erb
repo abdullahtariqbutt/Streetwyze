@@ -35,8 +35,7 @@
 
 <br>
 
-<!-- Image Dispaly -->
-<%= render 'display_images', story: @story %>
+<%= render "shared/display_uploads", target:@story %>
 
 <!-- User Sign In Check to Allow Edit -->
 <% if user_signed_in? %>

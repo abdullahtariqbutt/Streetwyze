@@ -5,11 +5,10 @@
 
 <% else %>
 
-  <% if @story.rating.present? %>
-    <% @story.map_asset.update(rating: calulate_avg_rating(@story.map_asset)) %>
-  <% end %>
+  $('#map_asset #rating_display').empty();
+  $('#map_asset #rating_display').data("score", <%= @story.map_asset.rating %>);
+   asset_rating();
 
-  location.reload(); // User this for the time being
   $("#stories_table").prepend("<%= j render('shared/story_row', story: @story) %>");
   $(".close-modal").click();
 

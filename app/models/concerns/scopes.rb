@@ -12,6 +12,5 @@ module Scopes
 
     pg_search_scope :search_keyword, against: [:name, :address, :category, :rating, :stuff_type],
         using: { tsearch: { prefix: true, dictionary: "english" }  }
-
   end
 end

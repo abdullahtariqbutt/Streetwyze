@@ -1,4 +1,4 @@
-module Validatons
+module Validations
   extend ActiveSupport::Concern
 
   included do

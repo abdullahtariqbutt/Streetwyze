@@ -19,8 +19,10 @@
             Dropdown button
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <%= link_to "Create Survey", root_path, class:"dropdown-item" %>
-            <%= link_to "Fill Survey", root_path, class:"dropdown-item" %>
+            <% if current_user.role == "admin" %>
+              <%= link_to "Create Survey", new_survey_path, class:"dropdown-item" %>
+            <% end %>
+            <%= link_to "Fill Survey", surveys_path, class:"dropdown-item" %>
             <%= link_to "Survey Results", root_path, class:"dropdown-item" %>
           </div>
         </div>

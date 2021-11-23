@@ -1,5 +1,7 @@
 class User < ApplicationRecord
 
+  has_one :survey
+
   USERNAME_REGEX = /\A(?=.*?[#?!@$%^&*-]).{4,30}\z/
   PASSWORD_REGEX = /\A(?=.*[A-Za-z])(?=.*\d).{8,}\z/
 
@@ -17,4 +19,5 @@ class User < ApplicationRecord
       self.role ||= :common
     end
   end
+
 end

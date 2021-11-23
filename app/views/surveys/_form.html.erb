@@ -2,6 +2,10 @@
 
   <%= render "shared/errors", target: @survey %>
 
+  <div class="field form-group">
+      <%= form.number_field :user_id, class:"form-control", value: current_user.id, type: :hidden %>
+  </div>
+
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title %>

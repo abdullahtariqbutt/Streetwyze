@@ -9,7 +9,7 @@ class SurveysController < ApplicationController
   def show; end
 
   def new
-    @survey = get_user_survey || @user.build_survey
+    @survey = @user.build_survey
   end
 
   def edit; end

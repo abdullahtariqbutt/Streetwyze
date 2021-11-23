@@ -2,11 +2,11 @@ class MapAssetsController < ApplicationController
   before_action :find_asset, only: %i[show edit update destroy]
 
   def index
-    @map_assets = MapAsset.order(created_at: :desc)
+    @map_assets = MapAsset.all
   end
 
   def show
-    @stories = @map_asset.stories.order(created_at: :desc)
+    @stories = @map_asset.stories
   end
 
   def new
@@ -41,7 +41,13 @@ class MapAssetsController < ApplicationController
 
   def destroy
     @map_asset.destroy
-    redirect_to map_assets_url, notice: "Asset was destroyed."
+    redirect_to map_assets_url, notice: "Asset was Deleted."
+  end
+
+  def delete_image
+    @image = ActiveStorage::Blob.find_signed(params[:id])
+    @image.attachments.first.purge
+    redirect_to map_assets_path, notice: "Image Deleted"
   end
 
   private
@@ -51,6 +57,6 @@ class MapAssetsController < ApplicationController
     end
 
     def asset_params
-      params.require(:map_asset).permit(:name, :address, :category, :leave_rating, :rating, :stuff_type, :description, uploads: [])
+      params.require(:map_asset).permit(:user_id, :name, :address, :category, :leave_rating, :rating, :stuff_type, :description, uploads: [])
     end
 end

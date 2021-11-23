@@ -1,4 +1,5 @@
 <tr id="story_row_<% story.id %>">
+
   <td><%= story.name %></td>
   <td><%= story.address %></td>
   <td><%= story.category %></td>
@@ -6,7 +7,12 @@
   <td><%= story.stuff_type %></td>
   <td><%= story.description %></td>
   <td><%= link_to 'Show', story %></td>
-  <td><%= link_to 'Edit', edit_story_path(story) %></td>
-  <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %>
-  <td>
+
+  <!-- User Sign In Check to Allow Edit and Delete -->
+  <% if story.user == current_user %>
+    <td><%= link_to 'Edit', edit_story_path(story) %></td>
+    <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <% end %>
+  <!-- End -->
+
 </tr>

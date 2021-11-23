@@ -1,7 +1,12 @@
-<h1>Assets List</h1>
+<!-- User Signed in Requiredment to add MapAsset -->
+<% if user_signed_in? %>
+  <%= link_to 'Create Asset', new_map_asset_path, class: "btn btn-primary", data: { toggle: 'modal', target: '#new_asset_modal', remote: true } %>
+<% else %>
+  <%= link_to 'Create Asset', map_assets_path, class: "btn btn-primary" %>
+<% end %>
+<!-- End -->
 
-<%= link_to 'Create Asset', new_map_asset_path, class: "btn btn-primary", data: { toggle: 'modal', target: '#new_asset_modal', remote: true } %>
-
+<!-- Model Code -->
 <div class="modal fade" id="new_asset_modal" tabindex="-1" aria-labelledby="AssetModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -16,6 +21,9 @@
     </div>
   </div>
 </div>
+<!-- End -->
+
+<h1>Assets List</h1>
 
 <table>
   <thead>

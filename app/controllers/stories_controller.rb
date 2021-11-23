@@ -1,9 +1,10 @@
 class StoriesController < ApplicationController
+
   before_action :find_story, only: %i[show edit update destroy]
   before_action :find_map_asset, only: %i[new create]
 
   def index
-    @stories = Story.order(created_at: :desc)
+    @stories = Story.all
   end
 
   def show; end
@@ -40,7 +41,13 @@ class StoriesController < ApplicationController
 
   def destroy
     @story.destroy
-    redirect_to stories_url, notice: "Story Destroyed"
+    redirect_to stories_url, notice: "Story Deleted"
+  end
+
+  def delete_image
+    @image = ActiveStorage::Blob.find_signed(params[:id])
+    @image.attachments.first.purge
+    redirect_to map_assets_path, notice: "Image Deleted"
   end
 
   private
@@ -54,6 +61,6 @@ class StoriesController < ApplicationController
     end
 
     def story_params
-      params.require(:story).permit(:name, :address, :category, :rating, :stuff_type, :description, uploads: [])
+      params.require(:story).permit(:user_id, :name, :address, :category, :rating, :stuff_type, :description, uploads: [])
     end
 end

@@ -1,4 +1,5 @@
 <tr id="asset_row_<% asset.id %>">
+
   <td><%= asset.name %></td>
   <td><%= asset.address %></td>
   <td><%= asset.category %></td>
@@ -6,6 +7,12 @@
   <td><%= asset.stuff_type %></td>
   <td><%= asset.description %></td>
   <td><%= link_to 'Show', map_asset_path(asset) %></td>
-  <td><%= link_to 'Edit', edit_map_asset_path(asset) %></td>
-  <td><%= link_to 'Destroy', map_asset_path(asset), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+  <!-- User Sign In Check to Allow Edit and Delete -->
+  <% if asset.user == current_user %>
+    <td><%= link_to 'Edit', edit_map_asset_path(asset) %></td>
+    <td><%= link_to 'Destroy', map_asset_path(asset), method: :delete, data: { confirm: 'Are you sure?' } %></td>      
+  <% end %>
+  <!-- End -->
+
 </tr>

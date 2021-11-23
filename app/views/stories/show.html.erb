@@ -1,5 +1,6 @@
-<p>
-  <strong>Name:</strong>
+<div>
+    <strong>Name:</strong>
+  </div>
   <%= @story.name %>
 </p>
 
@@ -15,7 +16,9 @@
 
 <p>
   <strong>Rating:</strong>
-  <%= @story.rating %>
+  <div id="story">
+    <div class="rating_display" data-score="<%= @story.rating %>"></div>
+  </div>
 </p>
 
 <p>
@@ -24,11 +27,17 @@
 </p>
 
 <p>
-  <strong>Story:</strong>
+  <strong>Description:</strong>
   <%= @story.description %>
 </p>
 
 <%= render "shared/display_uploads", target:@story %>
 
-<%= link_to 'Edit', edit_story_path(@story) %> |
+<!-- User Sign In Check to Allow Edit -->
+<% if user_signed_in? %>
+  <% if @story.user == current_user %>
+    <%= link_to 'Edit', edit_story_path(@story), class:"btn btn-primary" %> |
+  <% end %>
+<% end %>
+
 <%= link_to 'Back', stories_path %>

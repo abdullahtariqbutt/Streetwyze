@@ -5,6 +5,10 @@
     <%= render 'shared/errors', t: @map_asset %>
 
     <div class="field form-group">
+      <%= form.number_field :user_id, class:"form-control", value: current_user.id, type: :hidden %>
+    </div>
+
+    <div class="field form-group">
       <%= form.label :name %>
       <%= form.text_field :name, class:"form-control" %>
     </div>
@@ -16,12 +20,12 @@
 
     <div class="field form-group">
       <%= form.label :category %>
-      <%= form.select :category, get_categories() %>
+      <%= form.select :category, get_categories %>
     </div>
 
     <div class="field form-group">
       <%= form.label :stuff_type %>
-      <%= form.select :stuff_type, get_stuff_type() %>
+      <%= form.select :stuff_type, get_stuff_type %>
     </div>
 
     <div class="field form-group">

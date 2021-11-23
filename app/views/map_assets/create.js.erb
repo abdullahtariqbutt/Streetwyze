@@ -1,7 +1,6 @@
 <% if @map_asset.errors.any? %>
   $("#new_asset_form").html("<%= j render('form', map_asset: @map_asset) %>");
-  rating_binder();
 <% else %>
   $("#assets_table").prepend("<%= j render('map_asset_row', asset: @map_asset) %>");
-  $(".close-modal").click();
+  $("#new_asset_modal").modal('hide');
 <% end %>

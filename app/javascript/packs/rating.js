@@ -1,10 +1,36 @@
+window.asset_rating = function() {
+  $('#map_asset .rating_display').raty({
+
+    readOnly: true,
+    numberMax: 5,
+
+    starOn: '../images/star-on.png',
+    starOff: '../images/star-off.png',
+
+  });
+}
+
+window.story_rating = function() {
+  $('#story .rating_display').raty({
+
+    readOnly: true,
+    numberMax: 5,
+
+    starOn: '../images/star-on.png',
+    starOff: '../images/star-off.png',
+
+  });
+}
+
 window.rating_binder = function() {
-  $('#rating').raty({
+  $('#rate #rating').raty({
 
     targetType: 'score',
     targetKeep: true,
     target: '#review_star',
     half: false,
+
+    numberMax: 5,
 
     starOn: '../images/star-on.png',
     starOff: '../images/star-off.png',
@@ -16,25 +42,20 @@ window.rating_binder = function() {
     $(this).text('I don\'t want to leave a rating');
     $("#rate").hide("slow");
 
-    $('#rating').raty({
+    $('#rate #rating').raty({
       targetType: 'score',
       targetKeep: true,
       target: '#review_star',
-      targetScore: null
+      targetScore: null,
+
+      numberMax: 5,
     });
-
-  });
-
-  $('#rating_display').raty({
-
-    readOnly: true,
-
-    starOn: '../images/star-on.png',
-    starOff: '../images/star-off.png',
 
   });
 }
 
 $(document).on('turbolinks:load',function(){
+  asset_rating();
+  story_rating();
   rating_binder();
 });

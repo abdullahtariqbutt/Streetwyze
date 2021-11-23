@@ -2,8 +2,11 @@
 
   <div class="modal-body">
 
-    <!-- target 0 for map_assets and 1 for story if new ==== target 0 for story if edit -->
     <%= render 'shared/errors', t: @story %> 
+
+    <div class="field form-group">
+      <%= form.number_field :user_id, class:"form-control", value: current_user.id, type: :hidden %>
+    </div>
 
     <div class="field form-group">
       <%= form.label :name %>

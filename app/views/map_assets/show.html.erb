@@ -1,5 +1,4 @@
 <div class="jumbotron">
-
   <h1 class="display-4">
     <%= @map_asset.name %>
   </h1>
@@ -11,20 +10,18 @@
   <hr class="my-4">
 
   <div class="row">
-
     <p class="pl-3">
       <strong>Category:</strong>
       <%= @map_asset.category %>
     </p>
-
     <p class="pl-3">
       <strong>Stuff Type:</strong>
       <%= @map_asset.stuff_type %>
     </p>
-
   </div>
+
   <div id="map_asset">
-    <div id="rating_display" data-score="<%= @map_asset.rating %>"></div>
+    <div class="rating_display" data-score="<%= @map_asset.rating %>"></div>
   </div>
 </div>
 
@@ -37,14 +34,24 @@
 
 <br>
 
-<%= link_to 'Edit', edit_map_asset_path(@map_asset), class: "btn btn-primary btn-lg" %> |
-<%= link_to 'Back', map_assets_path, class: "btn btn-primary btn-lg" %>
+<!-- User Sign In Check to Allow Edit -->
+<% if @map_asset.user == current_user %>
+  <%= link_to 'Edit', edit_map_asset_path(@map_asset), class:"btn btn-primary btn-lg" %> |
+<% end %>
+<%= link_to 'Back', map_assets_path, class:"btn btn-primary btn-lg" %>
+
+<%= render "shared/display_uploads", target: @map_asset %>
 
 <br><br>
 
-<!-- Code to add new Stories -->
-<%= link_to 'Add Story', new_map_asset_story_path(@map_asset), class: "btn btn-primary", data: { toggle: 'modal', target: '#new_story_modal', remote: true } %>
+<!-- User Signed in Requiredment to add Story -->
+<% if user_signed_in? %>
+  <%= link_to 'Add Story', new_map_asset_story_path(@map_asset), class: "btn btn-primary", data: { toggle: 'modal', target: '#new_story_modal', remote: true } %>
+<% else %>
+  <%= link_to 'Add Story', map_asset_path(@map_asset), class: "btn btn-primary"%>
+<% end %>
 
+<!-- Modal Code -->
 <div class="modal fade" id="new_story_modal" tabindex="-1" aria-labelledby="StoryModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -59,8 +66,8 @@
     </div>
   </div>
 </div>
+<!-- End -->
 
-<!-- Code to Display Stories -->
 <h1>Stories</h1>
 
 <table>

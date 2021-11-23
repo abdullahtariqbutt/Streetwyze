@@ -9,7 +9,7 @@ class SurveysController < ApplicationController
   def show; end
 
   def new
-    @survey = Survey.new
+    @survey = get_user_survey || @user.build_survey
   end
 
   def edit; end
@@ -53,7 +53,9 @@ class SurveysController < ApplicationController
       @user = User.find(params[:user_id])
     end
 
-    def get
+    def get_user_survey
+      current_user.survey
+    end
 
     def survey_params
       params.require(:survey).permit(:user_id, :title, :script, questions_attributes:[:id, :content, :question_type, :_destroy, answers_attributes:[:id, :content, :_destroy]] )

@@ -35,10 +35,8 @@
 <br>
 
 <!-- User Sign In Check to Allow Edit -->
-<% if user_signed_in? %>
-  <% if @map_asset.user == current_user %>
-    <%= link_to 'Edit', edit_map_asset_path(@map_asset), class:"btn btn-primary btn-lg" %> |
-  <% end %>
+<% if @map_asset.user == current_user %>
+  <%= link_to 'Edit', edit_map_asset_path(@map_asset), class:"btn btn-primary btn-lg" %> |
 <% end %>
 <%= link_to 'Back', map_assets_path, class:"btn btn-primary btn-lg" %>
 

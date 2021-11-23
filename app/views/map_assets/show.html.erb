@@ -20,12 +20,18 @@
     </p>
   </div>
 
+<<<<<<< HEAD
   <p>
     <strong>Rating:</strong>
     <div id="map_asset">
       <div id="rating_display" data-score="<%= @map_asset.rating %>"></div>
     </div>
   </p>
+=======
+  <div id="map_asset">
+    <div class="rating_display" data-score="<%= @map_asset.rating %>"></div>
+  </div>
+>>>>>>> list_assets_stories
 </div>
 
 <p>
@@ -38,10 +44,15 @@
 <br>
 
 <!-- User Sign In Check to Allow Edit -->
+<<<<<<< HEAD
 <% if user_signed_in? %>
   <% if @map_asset.user == current_user %>
     <%= link_to 'Edit', edit_map_asset_path(@map_asset), class:"btn btn-primary" %>
   <% end %>
+=======
+<% if @map_asset.user == current_user %>
+  <%= link_to 'Edit', edit_map_asset_path(@map_asset), class:"btn btn-primary btn-lg" %> |
+>>>>>>> list_assets_stories
 <% end %>
 <%= link_to 'Back', map_assets_path, class:"btn btn-primary" %>
 

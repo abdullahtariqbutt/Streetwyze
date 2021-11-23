@@ -5,22 +5,22 @@ class MapAssetsController < ApplicationController
   def index
     if params[:search].present?
 
-      records = Records.new(params)
-      filtered_query = records.get_query
+      apply_filter = ApplyFiltersService.new(params)
+      filtered_query = apply_filter.call
 
       if filtered_query.empty?
-        @map_assets = MapAsset.order(created_at: :desc)
+        @map_assets = MapAsset.all
       else
-        @map_assets = MapAsset.send_chain(filtered_query).order(created_at: :desc)
+        @map_assets = MapAsset.send_chain(filtered_query)
       end
 
     else
-      @map_assets = MapAsset.order(created_at: :desc)
+      @map_assets = MapAsset.all
     end
   end
 
   def show
-    @stories = @map_asset.stories.order(created_at: :desc)
+    @stories = @map_asset.stories
   end
 
   def new
@@ -55,13 +55,13 @@ class MapAssetsController < ApplicationController
 
   def destroy
     @map_asset.destroy
-    redirect_to map_assets_url, notice: "Asset was destroyed."
+    redirect_to map_assets_url, notice: "Asset was Deleted."
   end
 
   def delete_image
     @image = ActiveStorage::Blob.find_signed(params[:id])
     @image.attachments.first.purge
-    redirect_to map_assets_path, notice: "Image Destroyed"
+    redirect_to map_assets_path, notice: "Image Deleted"
   end
 
   private

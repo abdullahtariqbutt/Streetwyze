@@ -1,21 +1,20 @@
 class StoriesController < ApplicationController
-  include SharedParams
 
   before_action :find_story, only: %i[show edit update destroy]
   before_action :find_map_asset, only: %i[new create]
 
   def index
     if params[:search].present?
-      records = Records.new(params)
-      filtered_query = records.get_query
+      apply_filter = ApplyFiltersService.new(params)
+      filtered_query = apply_filter.call
 
       if filtered_query.empty?
-        @stories = Story.order(created_at: :desc)
+        @stories = Story.all
       else
-        @stories = Story.send_chain(filtered_query).order(created_at: :desc)
+        @stories = Story.send_chain(filtered_query)
       end
     else
-      @stories = Story.order(created_at: :desc)
+      @stories = Story.all
     end
   end
 
@@ -53,13 +52,13 @@ class StoriesController < ApplicationController
 
   def destroy
     @story.destroy
-    redirect_to stories_url, notice: "Story Destroyed"
+    redirect_to stories_url, notice: "Story Deleted"
   end
 
   def delete_image
     @image = ActiveStorage::Blob.find_signed(params[:id])
     @image.attachments.first.purge
-    redirect_to map_assets_path, notice: "Image Destroyed"
+    redirect_to map_assets_path, notice: "Image Deleted"
   end
 
   private

@@ -20,13 +20,22 @@
     </p>
   </div>
 
-  <p>
-    <strong>Rating:</strong>
-    <div id="story">
-      <div id="rating_display" data-score="<%= @story.rating %>"></div>
-    </div>
-  </p>
-</div>
+<p>
+  <strong>Category:</strong>
+  <%= @story.category %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <div id="story">
+    <div class="rating_display" data-score="<%= @story.rating %>"></div>
+  </div>
+</p>
+
+<p>
+  <strong>Stuff type:</strong>
+  <%= @story.stuff_type %>
+</p>
 
 <p>
   <strong>Description:</strong>

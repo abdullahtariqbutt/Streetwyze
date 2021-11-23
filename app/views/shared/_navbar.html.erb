@@ -20,7 +20,7 @@
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <% if current_user.role == "admin" %>
-              <%= link_to "Create Survey", new_survey_path, class:"dropdown-item" %>
+              <%= link_to "Create Survey", new_user_survey_path(current_user), class:"dropdown-item" %>
             <% end %>
             <%= link_to "Fill Survey", surveys_path, class:"dropdown-item" %>
             <%= link_to "Survey Results", root_path, class:"dropdown-item" %>

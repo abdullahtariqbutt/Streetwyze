@@ -1,22 +1,21 @@
 class SurveysController < ApplicationController
-  before_action :set_survey, only: %i[ show edit update destroy ]
+  before_action :find_user, only: %i[new create]
+  before_action :find_survey, only: %i[show edit update destroy]
 
   def index
     @surveys = Survey.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @survey = Survey.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
-    @survey = Survey.new(survey_params)
+    @survey = @user.build_survey(survey_params)
 
     respond_to do |format|
       if @survey.save
@@ -46,9 +45,15 @@ class SurveysController < ApplicationController
 
   private
 
-    def set_survey
+    def find_survey
       @survey = Survey.find(params[:id])
     end
+
+    def find_user
+      @user = User.find(params[:user_id])
+    end
+
+    def get
 
     def survey_params
       params.require(:survey).permit(:user_id, :title, :script, questions_attributes:[:id, :content, :question_type, :_destroy, answers_attributes:[:id, :content, :_destroy]] )

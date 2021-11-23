@@ -1,9 +1,9 @@
-<%= form_with(model: @survey) do |form| %>
+<%= form_with(model: [@user, @survey]) do |form| %>
 
   <%= render "shared/errors", target: @survey %>
 
   <div class="field form-group">
-      <%= form.number_field :user_id, class:"form-control", value: current_user.id, type: :hidden %>
+    <%= form.number_field :user_id, class:"form-control", value: current_user.id, type: :hidden %>
   </div>
 
   <div class="field">

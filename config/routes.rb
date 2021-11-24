@@ -3,9 +3,12 @@ Rails.application.routes.draw do
   root to: "users#index"
 
   resources :users do
-    resources :surveys, only: %i[new create ]
+    resources :surveys, only: %i[new create]
   end
 
-  resources :surveys, only: %i[index show edit update destroy]
+  resources :surveys, only: %i[index show edit update destroy] do
+    resources :responses, only: %i[new create]
+  end
 
+  resources :responses, only: %i[index show]
 end

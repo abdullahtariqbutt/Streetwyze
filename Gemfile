@@ -13,7 +13,6 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'cocoon'
-
 # Use Redis adapter to run Action Cable in production
 
 # Use Active Model has_secure_password

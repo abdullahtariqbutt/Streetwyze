@@ -10,4 +10,8 @@ module ApplicationHelper
     c = subsets.sample(length).join
     "username" + c
   end
+
+  def survey_exists
+    @survey = Survey.first
+  end
 end

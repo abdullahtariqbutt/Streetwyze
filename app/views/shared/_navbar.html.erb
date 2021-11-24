@@ -22,8 +22,10 @@
             <% if current_user.role == "admin" %>
               <%= link_to "Create Survey", new_user_survey_path(current_user), class:"dropdown-item" %>
             <% end %>
-            <%= link_to "Fill Survey", surveys_path, class:"dropdown-item" %>
-            <%= link_to "Survey Results", "#", class:"dropdown-item" %>
+            <% if survey_exists %>
+              <%= link_to "Fill Survey", new_survey_response_path(@survey), class:"dropdown-item" %>
+            <% end %>
+            <%= link_to "Survey Results", responses_path, class:"dropdown-item" %>
           </div>
         </div>
 

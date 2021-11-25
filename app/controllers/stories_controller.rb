@@ -4,17 +4,10 @@ class StoriesController < ApplicationController
   before_action :find_map_asset, only: %i[new create]
 
   def index
-    if params[:search].present?
-      apply_filter = ApplyFiltersService.new(params)
-      filtered_query = apply_filter.call
+    @stories = Story.all
 
-      if filtered_query.empty?
-        @stories = Story.all
-      else
-        @stories = Story.send_chain(filtered_query)
-      end
-    else
-      @stories = Story.all
+    if params[:search].present?
+      @stories = Story.send_chain(ApplyFiltersService.new(params).call)
     end
   end
 

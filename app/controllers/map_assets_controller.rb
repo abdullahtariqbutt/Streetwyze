@@ -1,8 +1,13 @@
 class MapAssetsController < ApplicationController
+
   before_action :find_asset, only: %i[show edit update destroy]
 
   def index
     @map_assets = MapAsset.all
+
+    if params[:search].present?
+      @map_assets = MapAsset.send_chain(ApplyFiltersService.new(params).call)
+    end
   end
 
   def show
@@ -57,6 +62,7 @@ class MapAssetsController < ApplicationController
     end
 
     def asset_params
-      params.require(:map_asset).permit(:user_id, :name, :address, :category, :leave_rating, :rating, :stuff_type, :description, uploads: [])
+      params.require(:map_asset).permit(:user_id, :name, :address, :category, :rating, :stuff_type, :description, uploads: [])
     end
+
 end

@@ -1,40 +1,22 @@
-<!-- User Signed in Requiredment to add MapAsset -->
-<% if user_signed_in? %>
-  <%= link_to 'Create Asset', new_map_asset_path, class: "btn btn-primary", data: { toggle: 'modal', target: '#new_asset_modal', remote: true } %>
-<% else %>
-  <%= link_to 'Create Asset', map_assets_path, class: "btn btn-primary" %>
-<% end %>
-<!-- End -->
+<!-- Add MapAsset using Modal and Ajax -->
+<%= render 'add_map_asset' %>
 
-<!-- Model Code -->
-<div class="modal fade" id="new_asset_modal" tabindex="-1" aria-labelledby="AssetModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="new_asset_modal_label">Create Asset</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div id="new_asset_form">
-      </div>
-    </div>
-  </div>
-</div>
-<!-- End -->
+<!-- Filters Form -->
+<%= render 'shared/search_form', target: search_assets_path %>
 
+<!-- Listing Assets -->
 <h1>Assets List</h1>
 
-<table>
+<table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Category</th>
-      <th>Rating</th>
-      <th>Stuff type</th>
-      <th>Description</th>
-      <th colspan="3"></th>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Category</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Stuff type</th>
+      <th scope="col">Description</th>
+      <th scope="col" colspan="3" class="align-content-center">Actions</th>
     </tr>
   </thead>
 

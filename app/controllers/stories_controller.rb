@@ -5,6 +5,10 @@ class StoriesController < ApplicationController
 
   def index
     @stories = Story.all
+
+    if params[:search].present?
+      @stories = Story.send_chain(ApplyFiltersService.new(params).call)
+    end
   end
 
   def show; end

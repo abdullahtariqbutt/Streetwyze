@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "map_assets#index"
 
+  get 'search_assets', to: "map_assets#index"
+  get 'search_stories', to: "stories#index"
+
   resources :map_assets do
     member do
       delete :delete_image

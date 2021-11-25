@@ -1,6 +1,5 @@
 class ResponsesController < ApplicationController
-  before_action :find_user, only: %i[new create]
-  before_action :find_survey, only: %i[new show edit update destroy]
+  before_action :find_survey, only: %i[new create]
 
   def index
     @responses = Response.all
@@ -9,14 +8,12 @@ class ResponsesController < ApplicationController
   def show; end
 
   def new
-    @response = @survey.build_response
+    @response = @survey.responses.build
     @questions = @survey.questions
   end
 
-  def edit; end
-
   def create
-    @response = @survey.build_response(response_params)
+    @response = @survey.responses.build(response_params)
 
     respond_to do |format|
       if @response.save
@@ -30,14 +27,10 @@ class ResponsesController < ApplicationController
   private
 
     def find_survey
-      @survey = Survey.find(params[:id])
-    end
-
-    def find_user
-      @user = User.find(params[:user_id])
+      @survey = Survey.find(params[:survey_id])
     end
 
     def response_params
-      params.require(:response).permit(:user_id, survey_attributes:[:id, questions_attributes:[:id, answers_attributes:[:id]]] )
+      params.require(:response).permit(:user_id, survey_attributes: [:id, questions_attributes: [:id, answers_attributes: [:id]]] )
     end
 end

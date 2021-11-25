@@ -1,1 +1,25 @@
-<h1>Index</h1>
+<p id="notice"><%= notice %></p>
+
+<h1>Responses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User ID</th>
+      <th>Survey ID</th>
+      <th>Question ID</th>
+      <th>Answer ID</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @responses.each do |response| %>
+      <tr>
+        <td><%= response.user_id %></td>
+        <td><%= response.survey_id %></td>
+        <td><%= link_to 'Show', response_path(response) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

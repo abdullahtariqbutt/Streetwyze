@@ -1,33 +1,39 @@
-<p>
-  <strong>Title:</strong>
-  <%= @survey.title %>
-</p>
+<h1><%= @survey.title %></h1>
 
-<p>
-  <strong>Script:</strong>
-  <%= @survey.script %>
-</p>
+<h5><%= @survey.script %></h5>
 
-<% @survey.questions.each do |question| %>
-  <h2><%= question.content %></h2>
+<%= form_with(model: @response, url: survey_responses_path) do |form| %>
 
-  <% case question.question_type 
+  <div class="field form-group">
+    <%= form.number_field :user_id, class:"form-control", value: current_user.id, type: :hidden %>
+  </div>
 
-      when 'smiley_based' %> <%= text_area_tag question.id %>
+  <% @survey.questions.each do |question| %>
+    <ol>
+    <li><%= question.content %></li>
+    <% form.fields_for @survey.questions do |q| %>
+    <% case question.question_type
+        when 'smiley_based' %>
+        <%= question.text_field :question_id, class:"form-control", value: question.id %>
+        <% when 'open_ended' %>
+        <%= q.text_field :question_id, class:"form-control", value: question.id %>
 
-    <% when 'open_ended' %> <%= text_area_tag question.id %>
-
-    <% when 'multiple_choice' %>
-      <% question.answers.each do |answer| %>
-        <p>
-          <%= radio_button_tag question.id, answer.id %>
-          <%= answer.content %>
-        </p>
-      <% end %>
-
+        <% when 'multiple_choice' %>
+          <% question.answers.each do |answer| %>
+            <p>
+              <%= radio_button_tag question_id: question.id, answer_id: answer.id %>
+              <%= answer.content %>
+            </p>
+          <% end %>
+    <% end %>
+    <% end %>
+    </ol>
   <% end %>
 
-<% end %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
 
+<% end %>
 
 <%= link_to 'Back', root_path %>

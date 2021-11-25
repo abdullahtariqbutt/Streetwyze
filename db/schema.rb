@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_24_125941) do
+ActiveRecord::Schema.define(version: 2021_11_25_141311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,13 +55,14 @@ ActiveRecord::Schema.define(version: 2021_11_24_125941) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "question_id"
-    t.integer "survey_id"
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "response_id"
+    t.bigint "option_id"
+    t.index ["option_id"], name: "index_answers_on_option_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
-    t.index ["survey_id"], name: "index_answers_on_survey_id"
+    t.index ["response_id"], name: "index_answers_on_response_id"
   end
 
   create_table "map_assets", force: :cascade do |t|
@@ -77,6 +78,14 @@ ActiveRecord::Schema.define(version: 2021_11_24_125941) do
     t.index ["user_id"], name: "index_map_assets_on_user_id"
   end
 
+  create_table "options", force: :cascade do |t|
+    t.integer "question_id"
+    t.string "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_options_on_question_id"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.integer "survey_id"
     t.string "content"
@@ -84,19 +93,14 @@ ActiveRecord::Schema.define(version: 2021_11_24_125941) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "required"
-    t.integer "response_id"
     t.index ["survey_id"], name: "index_questions_on_survey_id"
   end
 
   create_table "responses", force: :cascade do |t|
     t.integer "user_id"
     t.integer "survey_id"
-    t.integer "question_id"
-    t.integer "answer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["answer_id"], name: "index_responses_on_answer_id"
-    t.index ["question_id"], name: "index_responses_on_question_id"
     t.index ["survey_id"], name: "index_responses_on_survey_id"
     t.index ["user_id"], name: "index_responses_on_user_id"
   end

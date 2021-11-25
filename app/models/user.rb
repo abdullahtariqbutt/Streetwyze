@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 
   has_one :survey, dependent: :destroy
+  has_many :responses
 
   USERNAME_REGEX = /\A(?=.*?[#?!@$%^&*-]).{4,30}\z/
   PASSWORD_REGEX = /\A(?=.*[A-Za-z])(?=.*\d).{8,}\z/

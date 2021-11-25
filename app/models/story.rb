@@ -1,7 +1,7 @@
 class Story < ApplicationRecord
 
   include PgSearch::Model
-  include Attributes
+  include DescriptionAttribute
   include Scopeable
   include Validatable
 

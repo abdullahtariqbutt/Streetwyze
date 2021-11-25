@@ -12,7 +12,7 @@ class MapAssetsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv { send_data @map_assets.to_csv, filename: "Assets-#{Date.today}.csv" }
+      format.csv { send_data GenerateCsv.call(target: @map_assets), filename: "Assets-#{Date.today}.csv" }
     end
   end
 

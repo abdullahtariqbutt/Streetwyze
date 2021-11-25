@@ -12,7 +12,7 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv { send_data @stories.to_csv, filename: "Stories-#{Date.today}.csv" }
+      format.csv { send_data GenerateCsv.call(target: @stories), filename: "Stories-#{Date.today}.csv" }
     end
   end
 

@@ -1,9 +1,9 @@
 class Story < ApplicationRecord
 
   include PgSearch::Model
-  include Scopes
-  include Validations
   include Attributes
+  include Scopeable
+  include Validatable
 
   # Associations
   has_rich_text :description
@@ -14,14 +14,9 @@ class Story < ApplicationRecord
 
   after_commit :average_calculate
 
-  def self.send_chain(methods)
-    methods.inject(self) { |result, method| result.send(*method) }
-  end
-
   def average_calculate
     if rating.present?
-      average = Average.new(map_asset)
-      map_asset.update(rating: average.rating_avg)
+      map_asset.update(rating: AverageCalculateService.new(map_asset).call)
     end
   end
 

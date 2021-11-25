@@ -1,9 +1,9 @@
 class MapAsset < ApplicationRecord
 
   include PgSearch::Model
-  include Scopes
-  include Validations
   include Attributes
+  include Scopeable
+  include Validatable
 
   # Associations
   has_rich_text :description
@@ -11,9 +11,5 @@ class MapAsset < ApplicationRecord
 
   belongs_to :user
   has_many :stories, dependent: :destroy
-
-  def self.send_chain(methods)
-    methods.inject(self) { |result, method| result.send(*method) }
-  end
 
 end

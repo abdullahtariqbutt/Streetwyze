@@ -5,11 +5,11 @@
 
 <% else %>
 
-  $('#map_asset #rating_display').empty();
-  $('#map_asset #rating_display').data("score", <%= @story.map_asset.rating %>);
-   asset_rating();
+  $('#map_asset .rating_display').empty();
+  $('#map_asset .rating_display').data("score", <%= @story.map_asset.rating %>);
+  asset_rating();
 
   $("#stories_table").prepend("<%= j render('shared/story_row', story: @story) %>");
-  $(".close-modal").click();
+  $("#new_story_modal").modal('hide');
 
 <% end %>

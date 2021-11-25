@@ -1,8 +1,8 @@
-module Scopes
+module Scopeable
   extend ActiveSupport::Concern
 
   included do
-    scope :get_all, -> { all }
+    # scope :get_all, -> { all }
     scope :type_filter, ->(type) { where("stuff_type = ?", type) }
     scope :category_filter, ->(category) { where("category = ?", category) }
     scope :owner_record, ->(current_user) { where("user_id = ?", current_user) }
@@ -12,5 +12,9 @@ module Scopes
 
     pg_search_scope :search_keyword, against: [:name, :address, :category, :rating, :stuff_type],
         using: { tsearch: { prefix: true, dictionary: "english" }  }
+
+    def self.send_chain(methods)
+      methods.inject(self) { |result, method| result.send(*method) }
+    end
   end
 end

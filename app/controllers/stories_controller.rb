@@ -1,19 +1,13 @@
 class StoriesController < ApplicationController
+
   before_action :find_story, only: %i[show edit update destroy]
   before_action :find_map_asset, only: %i[new create]
 
   def index
-    if params[:search].present?
-      records = Records.new(params)
-      filtered_query = records.get_query
+    @stories = Story.all
 
-      if filtered_query.empty?
-        @stories = Story.order(created_at: :desc)
-      else
-        @stories = Story.send_chain(filtered_query).order(created_at: :desc)
-      end
-    else
-      @stories = Story.order(created_at: :desc)
+    if params[:search].present?
+      @stories = Story.send_chain(ApplyFiltersService.new(params).call)
     end
 
     respond_to do |format|
@@ -56,13 +50,13 @@ class StoriesController < ApplicationController
 
   def destroy
     @story.destroy
-    redirect_to stories_url, notice: "Story Destroyed"
+    redirect_to stories_url, notice: "Story Deleted"
   end
 
   def delete_image
     @image = ActiveStorage::Blob.find_signed(params[:id])
     @image.attachments.first.purge
-    redirect_to map_assets_path, notice: "Image Destroyed"
+    redirect_to map_assets_path, notice: "Image Deleted"
   end
 
   private

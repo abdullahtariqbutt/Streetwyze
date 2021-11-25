@@ -10,14 +10,11 @@ module ApplicationHelper
     "username" + c
   end
 
-  STUFFTYPE = ["Good", "Bad", "Fix"]
-  CATEGORIES = ["Art", "Education", "Health", "Business", "Enviroment", "Housing", "Child Care", "Food", "Industry", "Safety", "Transportation"]
-
   def get_categories
-    CATEGORIES
+     ["Good", "Bad", "Fix"]
   end
 
   def get_stuff_type
-    STUFFTYPE
+    ["Art", "Education", "Health", "Business", "Enviroment", "Housing", "Child Care", "Food", "Industry", "Safety", "Transportation"].freeze
   end
 end

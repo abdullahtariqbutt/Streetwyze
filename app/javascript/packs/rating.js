@@ -1,5 +1,5 @@
 window.asset_rating = function() {
-  $('#map_asset #rating_display').raty({
+  $('#map_asset .rating_display').raty({
 
     readOnly: true,
     numberMax: 5,
@@ -11,7 +11,7 @@ window.asset_rating = function() {
 }
 
 window.story_rating = function() {
-  $('#story #rating_display').raty({
+  $('#story .rating_display').raty({
 
     readOnly: true,
     numberMax: 5,

@@ -1,14 +1,14 @@
 <div data-controller="nested-form" data-nested-form-index-value='ANSWER_RECORD' data-dynamic-select-target='choice'>
 
   <template data-nested-form-target='template'>
-    <%= form.fields_for :answers, Answer.new, child_index: 'ANSWER_RECORD' do |answer| %>
+    <%= form.fields_for :options, Option.new, child_index: 'ANSWER_RECORD' do |option| %>
     ANSWER - ANSWER_RECORD
-      <%= render 'text_answer_fields', form: answer %>
+      <%= render 'text_answer_fields', form: option %>
     <% end %>
   </template>
 
-  <%= form.fields_for :answers do |answer| %>
-    <%= render 'text_answer_fields', form: answer %>
+  <%= form.fields_for :options do |option| %>
+    <%= render 'text_answer_fields', form: option %>
   <% end %>
 
   <div data-nested-form-target="add_item">

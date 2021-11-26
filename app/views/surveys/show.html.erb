@@ -20,10 +20,10 @@
     <% when 'open_ended' %> <%= text_area_tag question.id %>
 
     <% when 'multiple_choice' %>
-      <% question.answers.each do |answer| %>
+      <% question.options.each do |option| %>
         <p>
-          <%= radio_button_tag question.id, answer.id %>
-          <%= answer.content %>
+          <%= radio_button_tag question.id, option.id %>
+          <%= option.content %>
         </p>
       <% end %>
 

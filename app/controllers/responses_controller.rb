@@ -14,12 +14,13 @@ class ResponsesController < ApplicationController
 
   def create
     @response = @survey.responses.build(response_params)
+    @response.user = current_user
 
     respond_to do |format|
-      if @response.save
+      if @response.save!
         format.html { redirect_to @response, notice: "Survey was successfully created." }
       else
-        format.html { render :new}
+        format.html { render :new }
       end
     end
   end
@@ -31,6 +32,6 @@ class ResponsesController < ApplicationController
     end
 
     def response_params
-      params.require(:response).permit(:user_id, survey_attributes: [:id, questions_attributes: [:id, answers_attributes: [:id]]] )
+      params.require(:response).permit(answers_attributes: [:id, :question_id, :option_id, :content] )
     end
 end

@@ -2,6 +2,7 @@ class ResponsesController < ApplicationController
   before_action :find_survey, only: %i[new create]
 
   def index
+    @answers = Answer.all
     @responses = Response.all
   end
 

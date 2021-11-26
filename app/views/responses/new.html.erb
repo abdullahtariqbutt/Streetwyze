@@ -16,7 +16,10 @@
 
           when 'smiley_based' %>
             <%= answer.hidden_field :question_id, value: question.id %>
-            <div class=""></div>
+            <div>
+              <div class="emoji-div"></div>
+              <%= answer.hidden_field :content %>
+            </div>
 
           <% when 'open_ended' %>
             <%= answer.hidden_field :question_id, value: question.id %>

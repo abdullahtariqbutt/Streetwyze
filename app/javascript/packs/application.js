@@ -17,3 +17,6 @@ global.$ = jQuery;
 import 'controllers'
 
 import 'bootstrap';
+
+require("packs/emoji");
+require("packs/display_emojis");

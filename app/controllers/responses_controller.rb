@@ -1,9 +1,16 @@
 class ResponsesController < ApplicationController
+  require 'csv'
+
   before_action :find_survey, only: %i[new create]
 
   def index
     @answers = Answer.all
     @responses = Response.all
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data GenerateResponseCsv.call(target: @answers, response: @responses), filename: "Resonses-#{Date.today}.csv" }
+    end
   end
 
   def show; end

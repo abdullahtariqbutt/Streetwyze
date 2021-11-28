@@ -14,4 +14,5 @@ module ApplicationHelper
   def survey_exists
     @survey = Survey.first
   end
+
 end

@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protected
 
     def after_sign_in_path_for(resource)
-      if current_user.sign_in_count <= 100
+      if current_user.sign_in_count <= 3
         show_survey_fill_path
       end
     end

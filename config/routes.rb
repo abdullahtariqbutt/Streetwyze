@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     resources :responses, only: %i[new create]
   end
 
-  resources :responses, only: %i[index show]
+  resources :responses, only: %i[index]
+  get "show_survey_fill", to: "responses#show_msg"
 end

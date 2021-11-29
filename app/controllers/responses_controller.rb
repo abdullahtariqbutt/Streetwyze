@@ -4,7 +4,7 @@ class ResponsesController < ApplicationController
   before_action :find_survey, only: %i[new create]
 
   def index
-    @survey =  Survey.includes(:questions, responses: {answers: [:question, :option]}).find(params[:survey_id])
+    @survey = Survey.includes(:questions, responses: {answers: [:question, :option]}).find(params[:survey_id])
 
     respond_to do |format|
       format.html
@@ -12,7 +12,16 @@ class ResponsesController < ApplicationController
     end
   end
 
-  def show; end
+  def show_msg
+    if params.has_key?(:choice)
+      if params[:choice].downcase == "yes"
+        @survey = Survey.first
+        redirect_to new_survey_response_path(@survey)
+      else
+        redirect_to root_path
+      end
+    end
+  end
 
   def new
     @response = @survey.responses.build
@@ -24,8 +33,8 @@ class ResponsesController < ApplicationController
     @response.user = current_user
 
     respond_to do |format|
-      if @response.save!
-        format.html { redirect_to @response, notice: "Survey was successfully created." }
+      if @response.save
+        format.html { redirect_to root_path, notice: "Thank you for your response" }
       else
         format.html { render :new }
       end

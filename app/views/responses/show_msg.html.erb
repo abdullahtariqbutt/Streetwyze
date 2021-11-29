@@ -1,0 +1,10 @@
+
+<h1>Request</h1>
+
+<%= form_with url: show_survey_fill_path, method: :get do |form| %>
+
+  <%= form.label :choice, "Would you like to take a survey" %>
+  <%= form.select :choice, ["Yes", "No"],{ selected:"", disabled:"" }, class:"form-control" %>  
+  <br>
+  <%= form.submit "Search" %>
+<% end %>

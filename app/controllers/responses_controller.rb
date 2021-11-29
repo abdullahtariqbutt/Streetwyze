@@ -12,6 +12,8 @@ class ResponsesController < ApplicationController
     end
   end
 
+  def show; end
+
   def show_msg
     if params.has_key?(:choice)
       if params[:choice].downcase == "yes"

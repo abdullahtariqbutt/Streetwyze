@@ -4,12 +4,11 @@ class ResponsesController < ApplicationController
   before_action :find_survey, only: %i[new create]
 
   def index
-    @answers = Answer.all
-    @responses = Response.all
+    @survey =  Survey.includes(:questions, responses: {answers: [:question, :option]}).find(params[:survey_id])
 
     respond_to do |format|
       format.html
-      format.csv { send_data GenerateResponseCsv.call(target: @answers, response: @responses), filename: "Resonses-#{Date.today}.csv" }
+      format.csv { send_data GenerateResponseCsv.call(target: @survey), filename: "Resonses-#{Date.today}.csv" }
     end
   end
 

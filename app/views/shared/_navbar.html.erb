@@ -32,7 +32,7 @@
               <%= link_to "Fill Survey", new_survey_response_path(@survey), class:"dropdown-item" %>
             <% end %>
 
-            <%= link_to "Survey Results", responses_path, class:"dropdown-item" %>
+            <%= link_to "Survey Results", responses_path(survey_id: @survey.id), class:"dropdown-item" %>
           </div>
         </div>
 

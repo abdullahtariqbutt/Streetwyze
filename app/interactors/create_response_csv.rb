@@ -6,52 +6,40 @@ class CreateResponseCsv
     target = context.target
     response = context.response
 
-    # Gathering all attributes
-    attributes = ["Questions"]
+    # ============================================================================
+    attributes = %w[Questions]
     response.each do |rspons|
-      attributes << ("Response by (" + (rspons.user.user_name).to_s + ") ")
+      attributes << ("Response by (" + (rspons.user.user_name).to_s + ")")
     end
-    # End
 
-    success = CSV.generate(headers: true) do |csv|
+    symbols_columns = %i[]
+     attributes.each do |atrbute|
+      symbols_columns << atrbute.parameterize.underscore.to_sym
+    end
+
+
+    CSV.generate(headers: true) do |csv|
+
       # Addding attributes to the csv file
-      csv << attributes
+      csv << symbols_columns
 
-      # target.all.each do |answer|
+      byebug
 
-      #   csv << attributes.map { |attr|
+      target.all.each do |answer|
 
-      #     answer.question.content.send(attr)
+        csv << [answer.question.content,
 
-      #     if answer.question.question_type == "open_ended" || answer.question.question_type == "smiley_based"
-      #       answer.content.send(attr)
-
-      #     else
-      #       answer.question.options.each do |o|
-      #         o.content.send(attr)
-      #       end
-
-      #     end
-      #   }
-
-        # csv << answer.question.content
-  
-        # if answer.question.question_type == "open_ended" || answer.question.question_type == "smiley_based"
-        #     csv << answer.content
-        # else
-        #   answer.question.options.each do |o|
-        #     csv << o.content
-        #   end
-        # end
-
-      # end
+          if answer.question.question_type == "multiple_choice"
+            answer.question.options.each do |o|
+              o.content
+            end
+          else
+            answer.content
+          end
+        ]
+      end
     end
 
-    if success
-      context.success = success
-    else
-      context.fail!(errors: success.errors)
-    end
   end
 
 end

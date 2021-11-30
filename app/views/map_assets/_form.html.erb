@@ -1,0 +1,50 @@
+<%= form_with(model: @map_asset, local: false) do |form| %>
+
+  <div class="modal-body">
+
+    <%= render 'shared/errors', t: @map_asset %>
+
+    <div class="field form-group">
+      <%= form.number_field :user_id, class:"form-control", value: current_user.id, type: :hidden %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, class:"form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :address %>
+      <%= form.text_field :address, class:"form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :category %>
+      <%= form.select :category, get_categories %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :stuff_type %>
+      <%= form.select :stuff_type, get_stuff_type %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :description %>
+      <%= form.rich_text_area :description, class:"form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :uploads %>
+      <%= form.file_field :uploads, multiple: true, class:"form-control" %>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <div class="actions form-group">
+      <%= form.submit class:"btn btn-primary" %>
+    </div>
+    <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
+  </div>
+
+<% end %>

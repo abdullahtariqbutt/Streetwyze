@@ -1,0 +1,26 @@
+<!-- Filters Form -->
+<%= render 'shared/search_form', target:search_stories_path %>
+
+<%= link_to 'Export CSV', stories_path(request.params.merge(format: "csv")), class:"btn btn-primary" %>
+
+<h1>Stories</h1>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Category</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Stuff type</th>
+      <th scope="col">Description</th>
+      <th scope="col"colspan="3">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stories.each do |story| %>
+      <%= render "shared/story_row", story: story %>
+    <% end %>
+  </tbody>
+</table>

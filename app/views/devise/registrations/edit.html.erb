@@ -5,7 +5,12 @@
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", readonly:true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_name %><br />
+    <%= f.text_field :user_name, autofocus: true %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -31,10 +36,23 @@
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
+  <br>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
+
+  <br>
+  
 <% end %>
+
+<% if is_gold_user(current_user.id) == true %>
+  <%= button_to "Buy a Subscription", checkout_create_path, disabled:true, class:"btn btn-secondary" %>
+<% else %>
+  <%= button_to "Buy a Subscription", checkout_create_path, params:{id: current_user.id}, remote:true, class:"btn btn-primary" %>
+<% end %>
+
+<br>
 
 <h3>Cancel my account</h3>
 

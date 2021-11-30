@@ -1,0 +1,26 @@
+<div>
+  <strong>Attachments:</strong>
+  <br>
+  <% target.uploads.each do |upload| %>
+    <% if upload.variable? %>
+      <%= link_to image_tag(upload.variant(resize: "400x400")), upload %>
+    <% elsif upload.previewable? %>
+      <%= link_to image_tag(upload.preview(resize: "400x400")), upload %>
+    <% elsif upload.image? %>
+      <%= link_to image_tag(upload, width:400), upload %>
+    <% else %>
+      <%= link_to image.filename , rails_blog_path %>
+    <% end %>
+
+    <!-- Owner Check to allow Delete Option -->
+    <% if user_signed_in? %>
+      <% if target.user == current_user %>
+        <%= link_to 'Remove', delete_image_story_path(upload.signed_id), class:"btn btn-primary",
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } %>
+        <br><br><br>
+      <% end %>
+    <% end %>
+  <% end %>
+
+</div>

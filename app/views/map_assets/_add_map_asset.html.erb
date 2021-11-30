@@ -1,0 +1,24 @@
+<!-- User Signed in Requiredment to add MapAsset -->
+<% if user_signed_in? %>
+  <%= link_to 'Create Asset', new_map_asset_path, class: "btn btn-primary", data: { toggle: 'modal', target: '#new_asset_modal', remote: true } %>
+<% else %>
+  <%= link_to 'Create Asset', map_assets_path, class: "btn btn-primary" %>
+<% end %>
+<!-- End -->
+
+<!-- Modal Code -->
+<div class="modal fade" id="new_asset_modal" tabindex="-1" aria-labelledby="AssetModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="new_asset_modal_label">Create Asset</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="new_asset_form">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End of Modal Code -->

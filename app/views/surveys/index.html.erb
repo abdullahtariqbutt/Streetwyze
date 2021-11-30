@@ -1,9 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Surveys</h1>
+<h1 class="text-center">Survey</h1>
 
-<table>
-  <thead>
+
+<table class="table table-bordered table-striped">
+  <thead class="bg-dark text-light">
     <tr>
       <th>Title</th>
       <th>Script</th>
@@ -15,11 +16,16 @@
     <% @surveys.each do |survey| %>
       <tr>
         <td><%= survey.title %></td>
-        <td><%= survey.script %></td>
-        <td><%= link_to 'Show', survey_path(survey) %></td>
+        <td>
+          <p class="overflow"><%= survey.script %></p>
+        </td>
+
+        <td align="center"><%= link_to 'Show', survey_path(survey), class: "btn btn-primary" %></td>
+
         <% if current_user.id == survey.user_id %>
-          <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
-          <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td align="center"><%= link_to 'Edit', edit_survey_path(survey), class: "btn btn-secondary" %></td>
+
+          <td align="center"><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
         <% end %>
       </tr>
     <% end %>
@@ -28,5 +34,5 @@
 
 <br>
 <% if current_user.role == "admin" %>
-  <%= link_to 'New Survey', new_user_survey_path(current_user) %>
+  <%= link_to 'New Survey', new_user_survey_path(current_user), class: "btn btn-primary", data: { confirm: 'Are you sure?' } %>
 <% end %>

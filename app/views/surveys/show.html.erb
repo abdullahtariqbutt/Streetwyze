@@ -1,36 +1,39 @@
-<p id="notice"><%= notice %></p>
+<div class="container pt-5">
+  <div class="p-4 bg-light border border-dark rounded rounded-lg">
 
-<p>
-  <strong>Title:</strong>
-  <%= @survey.title %>
-</p>
+    <h1 class="text-center"><%= @survey.title %></h1>
 
-<p>
-  <strong>Script:</strong>
-  <%= @survey.script %>
-</p>
+    <h5>Script:</h5>
 
-<% @survey.questions.each do |question| %>
-  <h2><%= question.content %></h2>
+    <p class="pl-4"><%= @survey.script %></p>
 
-  <% case question.question_type 
+    <% @survey.questions.each do |question| %>
+      <h4><%= question.content %></h4>
 
-      when 'smiley_based' %> <%= text_area_tag question.id %>
+      <% case question.question_type 
 
-    <% when 'open_ended' %> <%= text_area_tag question.id %>
+          when 'smiley_based' %> <%= text_area_tag question.id %>
 
-    <% when 'multiple_choice' %>
-      <% question.options.each do |option| %>
-        <p>
-          <%= radio_button_tag question.id, option.id %>
-          <%= option.content %>
-        </p>
+        <% when 'open_ended' %> <%= text_area_tag question.id %>
+
+        <% when 'multiple_choice' %>
+          <% question.options.each do |option| %>
+            <p >
+              <%= radio_button_tag question.id, option.id %>
+              <%= option.content %>
+            </p>
+          <% end %>
+
       <% end %>
 
-  <% end %>
+    <% end %>
 
-<% end %>
+    <br>
 
+    <div class="pt-3">
+      <%= link_to 'Edit', edit_survey_path(target: @survey), class:"btn btn-secondary btn-lg" %>
+      <%= link_to 'Back', surveys_path, class:"btn btn-dark btn-lg" %>
+    </div>
 
-<%= link_to 'Edit', edit_survey_path(target: @survey) %> |
-<%= link_to 'Back', surveys_path %>
+  </div>
+</div>

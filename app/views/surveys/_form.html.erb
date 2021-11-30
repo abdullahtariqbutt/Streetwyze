@@ -6,20 +6,22 @@
     <%= form.number_field :user_id, class:"form-control", value: current_user.id, type: :hidden %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class:"form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :script %>
-    <%= form.text_field :script %>
+    <%= form.text_area :script, class:"form-control" %>
   </div>
+
+  <br>
 
   <%= render "add_remove_question_answer", form: form, survey: @survey %>
 
-  <div class="actions">
-    <%= form.submit "Publish" %>
+  <div class="actions pt-3">
+    <%= form.submit "Publish", class:"btn btn-primary" %>
   </div>
 
 <% end %>

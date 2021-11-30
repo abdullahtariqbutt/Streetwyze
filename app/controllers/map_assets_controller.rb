@@ -8,6 +8,11 @@ class MapAssetsController < ApplicationController
     if params[:search].present?
       @map_assets = MapAsset.send_chain(ApplyFiltersService.new(params).call)
     end
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data GenerateCsv.call(target: @map_assets), filename: "Assets-#{Date.today}.csv" }
+    end
   end
 
   def show
@@ -64,5 +69,4 @@ class MapAssetsController < ApplicationController
     def asset_params
       params.require(:map_asset).permit(:user_id, :name, :address, :category, :rating, :stuff_type, :description, uploads: [])
     end
-
 end

@@ -1,6 +1,7 @@
 class MapAsset < ApplicationRecord
 
   include PgSearch::Model
+  include DescriptionAttribute
   include Scopeable
   include Validatable
 

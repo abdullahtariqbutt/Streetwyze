@@ -9,6 +9,11 @@ class StoriesController < ApplicationController
     if params[:search].present?
       @stories = Story.send_chain(ApplyFiltersService.new(params).call)
     end
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data GenerateCsv.call(target: @stories), filename: "Stories-#{Date.today}.csv" }
+    end
   end
 
   def show; end

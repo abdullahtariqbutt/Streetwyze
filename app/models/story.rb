@@ -1,6 +1,7 @@
 class Story < ApplicationRecord
 
   include PgSearch::Model
+  include DescriptionAttribute
   include Scopeable
   include Validatable
 
@@ -14,9 +15,8 @@ class Story < ApplicationRecord
   after_commit :average_calculate
 
   def average_calculate
-    if rating.present?
-      map_asset.update(rating: AverageCalculateService.new(map_asset).call)
-    end
+    return if rating.blank?
+    map_asset.update(rating: AverageCalculateService.new(map_asset).call)
   end
 
 end

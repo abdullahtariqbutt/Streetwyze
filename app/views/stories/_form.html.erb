@@ -1,0 +1,60 @@
+<%= form_with(model: target, local: false) do |form| %>
+
+  <div class="modal-body">
+
+    <%= render 'shared/errors', t: @story %> 
+
+    <div class="field form-group">
+      <%= form.number_field :user_id, class:"form-control", value: current_user.id, type: :hidden %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, class:"form-control", readonly: true , value: map_asset.name %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :address %>
+      <%= form.text_field :address, class:"form-control", readonly: true, value: map_asset.address %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :category %>
+      <%= form.select :category, get_categories() %>  
+    </div>
+
+    <div class="field form-group" id="rate">
+      <%= form.label :rating %>
+      <div id="rating"></div>
+      <%= form.hidden_field :rating, id: "review_star" %>
+    </div>
+
+    <div class="field form-group">
+      <p id="rating_check" >I don't want to leave a rating</p>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :stuff_type %>
+      <%= form.select :stuff_type, get_stuff_type() %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :description %>
+      <%= form.rich_text_area :description, class:"form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :uploads %>
+      <%= form.file_field :uploads, multiple: true, class:"form-control" %>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <div class="actions form-group">
+      <%= form.submit class:"btn btn-primary" %>
+    </div>
+    <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
+  </div>
+
+<% end %>

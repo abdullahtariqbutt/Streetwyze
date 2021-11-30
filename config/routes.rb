@@ -1,7 +1,25 @@
 Rails.application.routes.draw do
+
   devise_for :users
-  root to: "users#index"
+  root to: "map_assets#index"
+
+  get 'search_assets', to: "map_assets#index"
+  get 'search_stories', to: "stories#index"
+
+  resources :map_assets do
+    member do
+      delete :delete_image
+    end
+    resources :stories, only: %i[new create]
+  end
+
+  resources :stories, only: %i[index show edit update destroy] do
+    member do
+      delete :delete_image
+    end
+  end
 
   post "checkout/create", to:'checkout#create'
   resources :webhooks, only: [:create]
+
 end

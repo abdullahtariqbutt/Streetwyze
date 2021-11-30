@@ -1,0 +1,30 @@
+<!-- Add MapAsset using Modal and Ajax -->
+<%= render 'add_map_asset' %>
+
+<!-- Filters Form -->
+<%= render 'shared/search_form', target: search_assets_path %>
+
+<%= link_to 'Export CSV', map_assets_path(request.params.merge(format: "csv")), class:"btn btn-primary" %>
+
+<!-- Listing Assets -->
+<h1>Assets List</h1>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Category</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Stuff type</th>
+      <th scope="col">Description</th>
+      <th scope="col" colspan="3" class="align-content-center">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody id="assets_table">
+    <% @map_assets.each do |asset| %>
+      <%= render 'map_asset_row', asset: asset %>
+    <% end %>
+  </tbody>
+</table>

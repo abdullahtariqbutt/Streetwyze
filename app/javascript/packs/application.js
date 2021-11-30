@@ -14,4 +14,13 @@ ActiveStorage.start()
 import $ from 'jquery';
 global.$ = jQuery;
 
-import 'bootstrap';
+import "bootstrap";
+
+require('packs/raty.js')
+require("packs/rating.js")
+
+require("daterangepicker")
+require("packs/pickdate.js")
+
+require("trix")
+require("@rails/actiontext")

@@ -12,11 +12,12 @@ class Story < ApplicationRecord
   belongs_to :user
   belongs_to :map_asset
 
-  after_commit :average_calculate
+  after_commit :calculate_average
 
-  def average_calculate
+  def calculate_average
     return if rating.blank?
-    map_asset.update(rating: AverageCalculateService.new(map_asset).call)
+
+    map_asset.update_attribute(:rating, AverageCalculateService.new(map_asset).call)
   end
 
 end

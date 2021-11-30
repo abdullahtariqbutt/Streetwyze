@@ -35,7 +35,7 @@ class ResponsesController < ApplicationController
     @response.user = current_user
 
     respond_to do |format|
-      if @response.save
+      if @response.save!
         format.html { redirect_to root_path, notice: "Thank you for your response" }
       else
         format.html { render :new }

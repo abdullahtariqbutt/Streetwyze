@@ -1,6 +1,5 @@
 module ApplicationHelper
-  def set_random_user_name()
-    length = 10
+  def set_random_user_name(length = 10)
     subsets = [    
         "!", "#", "$", "%", "&", "*", "-",
         "0", "1", "2", "3", "4", "5", "6",

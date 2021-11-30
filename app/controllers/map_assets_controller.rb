@@ -1,5 +1,4 @@
 class MapAssetsController < ApplicationController
-  require 'csv'
 
   before_action :find_asset, only: %i[show edit update destroy]
 

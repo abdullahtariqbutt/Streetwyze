@@ -16,7 +16,6 @@ gem "mini_magick"
 gem 'image_processing'
 gem "rmagick"
 gem 'pg_search'
-gem "interactor", "~> 3.0"
 gem "interactor-rails", "~> 2.0"
 
 # Use Redis adapter to run Action Cable in production

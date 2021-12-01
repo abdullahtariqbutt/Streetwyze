@@ -1,25 +1,31 @@
 class CheckoutController < ApplicationController
+  before_action :find_user, only: %i[create]
 
   def create
-  	user = User.find(params[:id])
-  	@session = Stripe::Checkout::Session.create({
-		  payment_method_types: ['card'],
-		  line_items: [{
-		  	name:user.user_name,
-		  	amount: 999,
-		  	currency:"usd",
-		  	quantity:1,
-		  }],
-		 	client_reference_id: user.id,
+    @session = Stripe::Checkout::Session.create({
+      payment_method_types: ['card'],
+      line_items: [{
+        name:user.user_name,
+        amount: 999,
+        currency:"usd",
+        quantity:1,
+      }],
+      client_reference_id: user.id,
 
-		  mode: 'payment',
-		  success_url: 'http://localhost:3000/users/edit',
-		  cancel_url: 'http://localhost:3000/users/edit',
-	})
+      mode: 'payment',
+      success_url: edit_user_registration_url,
+      cancel_url: edit_user_registration_url,
+    })
 
-		respond_to do |format|
-		  format.js
-		end
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  private
+
+  def find_user
+    @user = User.find(params[:id])
   end
 
 end

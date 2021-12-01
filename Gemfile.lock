@@ -237,7 +237,6 @@ DEPENDENCIES
   cocoon
   devise (~> 4.8)
   image_processing
-  interactor (~> 3.0)
   interactor-rails (~> 2.0)
   jbuilder (~> 2.7)
   listen (~> 3.3)

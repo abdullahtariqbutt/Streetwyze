@@ -5,7 +5,7 @@
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", readonly:true %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", readonly: true %>
   </div>
 
   <div class="field">
@@ -46,10 +46,10 @@
   
 <% end %>
 
-<% if is_gold_user(current_user.id) == true %>
-  <%= button_to "Buy a Subscription", checkout_create_path, disabled:true, class:"btn btn-secondary" %>
+<% if current_user.is_premium_user? %>
+  <%= button_to "Buy a Subscription", checkout_create_path, disabled: true, class: "btn btn-secondary" %>
 <% else %>
-  <%= button_to "Buy a Subscription", checkout_create_path, params:{id: current_user.id}, remote:true, class:"btn btn-primary" %>
+  <%= button_to "Buy a Subscription", checkout_create_path, params: {id: current_user.id}, remote: true, class: "btn btn-primary" %>
 <% end %>
 
 <br>

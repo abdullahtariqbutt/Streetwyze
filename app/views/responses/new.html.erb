@@ -1,55 +1,57 @@
 <div class="container pt-5">
-  <div class="p-4 bg-light border border-dark rounded rounded-lg">
 
-    <h1 class="text-center"><%= @survey.title %></h1>
+  <h1 class="text-center"><%= @survey.title %></h1>
 
-    <h5>Script:</h5>
+  <h5>Script:</h5>
 
-    <p class="pl-4"><%= @survey.script %></p>
+  <p class="pl-4"><%= @survey.script %></p>
 
-    <%= form_with(model: @response, url: survey_responses_path) do |form| %>
-      <ol>
-        <% @survey.questions.each do |question|%>
+  <hr>
 
-          <%= form.fields_for :answers, Answer.new do |answer| %>
+  <%= form_with(model: @response, url: survey_responses_path) do |form| %>
+    <ol>
+      <% @survey.questions.each do |question|%>
 
-            <div class="form-group pl-5">
-              <h4><li><%= question.content %></li></h4>
-            
-              <% case question.question_type
+        <%= form.fields_for :answers, Answer.new do |answer| %>
 
-                  when 'smiley_based' %>
+          <div class="form-group pl-5">
+            <h4><li><%= question.content %></li></h4>
+          
+            <% case question.question_type
+
+                when 'smiley_based' %>
+                  <%= answer.hidden_field :question_id, value: question.id %>
+                    <div class="emoji-div"></div>
+                    <%= answer.hidden_field :content %>
+
+                <% when 'open_ended' %>
+                  
                     <%= answer.hidden_field :question_id, value: question.id %>
-                      <div class="emoji-div"></div>
-                      <%= answer.hidden_field :content %>
-
-                  <% when 'open_ended' %>
-                    
-                      <%= answer.hidden_field :question_id, value: question.id %>
-                      <%= answer.text_field :content, class:"form-control" %>
+                    <%= answer.text_field :content, class:"form-control" %>
 
 
-                  <% when 'multiple_choice' %>
-                    <%= answer.hidden_field :question_id, value: question.id %>
-                    <%= answer.collection_radio_buttons :option_id, question.options, :id, :content %>
+                <% when 'multiple_choice' %>
+                  <%= answer.hidden_field :question_id, value: question.id %>
+                  <%= answer.collection_radio_buttons :option_id, question.options, :id, :content %>
 
-              <% end %>
-                            </div>
-
-          <% end %>
+            <% end %>
+          </div>
 
         <% end %>
-      </ol>
 
-      <div class="actions pt-5">
-        <%= form.submit class: "btn btn-primary" %>
-      </div>
+      <% end %>
+    </ol>
 
-    <% end %>
+    <hr>
 
-    <div class= "pt-3">
-      <%= link_to 'Back', root_path, class: "btn btn-secondary" %>
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary" %>
     </div>
 
+  <% end %>
+
+  <div class= "pt-3">
+    <%= link_to 'Back', root_path, class: "btn btn-secondary" %>
   </div>
+
 </div>

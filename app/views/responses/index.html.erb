@@ -30,8 +30,8 @@
         <% @survey.responses.each do |response|%>
 
           <td>
-            <% if question.question_type == 'multiple_choice' %>
-              <%= response.answers.find_by(question_id: question.id).option.content %>
+            <% if question.question_type == 'multiple_choice'%>
+              <%= response.answers.find_by(question_id: question.id).option.nil? ? nil : response.answers.find_by(question_id: question.id).option.content %>
             <% else %>
               <%= response.answers.find_by(question_id: question.id).content %>
             <% end %>

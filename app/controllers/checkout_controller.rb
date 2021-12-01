@@ -1,5 +1,5 @@
 class CheckoutController < ApplicationController
-  before_action :find_asset, only: %i[create]
+  before_action :find_user, only: %i[create]
 
   def create
     @session = Stripe::Checkout::Session.create({
@@ -13,8 +13,8 @@ class CheckoutController < ApplicationController
       client_reference_id: user.id,
 
       mode: 'payment',
-      success_url: 'http://localhost:3000/users/edit',
-      cancel_url: 'http://localhost:3000/users/edit',
+      success_url: edit_user_registration_url,
+      cancel_url: edit_user_registration_url,
     })
 
     respond_to do |format|

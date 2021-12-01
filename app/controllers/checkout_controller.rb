@@ -15,7 +15,7 @@ class CheckoutController < ApplicationController
       mode: 'payment',
       success_url: 'http://localhost:3000/users/edit',
       cancel_url: 'http://localhost:3000/users/edit',
-	})
+    })
 
     respond_to do |format|
       format.js

@@ -14,6 +14,6 @@ module ApplicationHelper
   end
 
   def get_stuff_type
-    ["Art", "Education", "Health", "Business", "Enviroment", "Housing", "Child Care", "Food", "Industry", "Safety", "Transportation"].freeze
+    ["Art", "Education", "Health", "Business", "Enviroment", "Housing", "Child Care", "Food", "Industry", "Safety", "Transportation"]
   end
 end

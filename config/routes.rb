@@ -19,4 +19,7 @@ Rails.application.routes.draw do
     end
   end
 
+  post "checkout/create", to:'checkout#create'
+  resources :webhooks, only: [:create]
+
 end

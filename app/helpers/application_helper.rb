@@ -9,15 +9,6 @@ module ApplicationHelper
     "username" + c
   end
 
-  def is_gold_user(id)
-    @user = User.find(id)
-    if @user.is_premium_user == true
-      return true
-    else
-      return false
-    end
-  end
-
   def get_categories
      ["Good", "Bad", "Fix"].freeze
   end

@@ -18,14 +18,16 @@ import 'controllers'
 
 import "bootstrap";
 
-require('packs/raty.js')
-require("packs/rating.js")
+require('packs/raty.js');
+require("packs/rating.js");
 
 require("packs/emoji");
 require("packs/display_emojis");
 
-require("daterangepicker")
-require("packs/pickdate.js")
+require("daterangepicker");
+require("packs/pickdate.js");
 
-require("trix")
-require("@rails/actiontext")
+require("trix");
+require("@rails/actiontext");
+
+require("packs/survey_msg");

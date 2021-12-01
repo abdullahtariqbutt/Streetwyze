@@ -1,7 +1,7 @@
 class CheckoutController < ApplicationController
+  before_action :find_asset, only: %i[create]
 
   def create
-    user = User.find(params[:id])
     @session = Stripe::Checkout::Session.create({
       payment_method_types: ['card'],
       line_items: [{
@@ -20,6 +20,12 @@ class CheckoutController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+
+  private
+
+  def find_user
+    @user = User.find(params[:id])
   end
 
 end

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   protected
 
     def after_sign_in_path_for(resource)
-      if current_user.sign_in_count <= 100 && Survey.first.present?
+      if current_user.sign_in_count <= 3 && (Survey.first.present? && current_user.responses.first.blank?)
         show_survey_fill_path
       else
         root_path

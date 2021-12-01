@@ -29,7 +29,8 @@ class SurveysController < ApplicationController
   def update
     respond_to do |format|
       if @survey.update(survey_params)
-        format.html { redirect_to @survey, notice: "Survey was successfully updated." }
+        Response.destroy_all
+        format.html { redirect_to @survey, notice: "Survey was successfully updated and former Responses deleted" }
       else
         format.html { render :edit }
       end

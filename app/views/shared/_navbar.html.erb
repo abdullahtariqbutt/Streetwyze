@@ -24,9 +24,7 @@
         </li>
 
         <div class="dropdown">
-          <button class="btn bg-dark text-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown button
-          </button>
+          <button class="btn bg-dark text-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Survey</button>
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <% if current_user.role == "admin" %>
@@ -35,7 +33,7 @@
               <%= link_to "Create Survey", new_user_survey_path(current_user), class:"dropdown-item", data: { confirm: 'Are you sure?' } %>
             <% end %>
 
-            <% if survey_exists %>
+            <% if survey_exists && current_user.responses.first.blank? %>
               <%= link_to "Fill Survey", new_survey_response_path(@survey), class:"dropdown-item" %>
               <%= link_to "Survey Results", responses_path(survey_id: @survey.id), class:"dropdown-item" %>
              <% end %>

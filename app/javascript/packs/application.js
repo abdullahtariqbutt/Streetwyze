@@ -31,3 +31,4 @@ require("trix");
 require("@rails/actiontext");
 
 require("packs/survey_msg");
+require("packs/form_validation");

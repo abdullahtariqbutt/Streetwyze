@@ -1,4 +1,4 @@
-<div class="container pt-5">
+<div class="container pt-5 border border-dark bg-light rounded">
 
   <h1 class="text-center"><%= @survey.title %></h1>
 
@@ -8,7 +8,7 @@
 
   <hr>
 
-  <%= form_with(model: @response, url: survey_responses_path) do |form| %>
+  <%= form_with(model: @response, url: survey_responses_path, html: {id: "response_form"}) do |form| %>
     <ol>
       <% @survey.questions.each do |question|%>
 
@@ -21,9 +21,10 @@
 
                 when 'smiley_based' %>
                   <%= answer.hidden_field :question_id, value: question.id %>
+                  <div>
                     <div class="emoji-div"></div>
                     <%= answer.hidden_field :content %>
-
+                  </div>
                 <% when 'open_ended' %>
                   
                     <%= answer.hidden_field :question_id, value: question.id %>
@@ -45,12 +46,12 @@
     <hr>
 
     <div class="actions">
-      <%= form.submit class: "btn btn-primary" %>
+      <%= form.submit class: "btn btn-primary", id: "hit_it" %>
     </div>
 
   <% end %>
 
-  <div class= "pt-3">
+  <div class= "pt-3 pb-3">
     <%= link_to 'Back', root_path, class: "btn btn-secondary" %>
   </div>
 

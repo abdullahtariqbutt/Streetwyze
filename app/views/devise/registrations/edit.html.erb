@@ -39,23 +39,22 @@
   <br>
 
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Update", class: "btn btn-primary" %>
   </div>
 
-  <br>
-  
+  <hr>
 <% end %>
 
 <% if current_user.is_premium_user? %>
-  <%= button_to "Buy a Subscription", checkout_create_path, disabled: true, class: "btn btn-secondary" %>
+  <%= button_to "Buy a Subscription", checkout_create_path, disabled: true, class: "btn btn-dark" %>
 <% else %>
-  <%= button_to "Buy a Subscription", checkout_create_path, params: {id: current_user.id}, remote: true, class: "btn btn-primary" %>
+  <%= button_to "Buy a Subscription", checkout_create_path, params: {id: current_user.id}, remote: true, class: "btn border border-dark", style: "background-color: gold;" %>
 <% end %>
 
-<br>
+  <hr>
 
-<h3>Cancel my account</h3>
+<h3>Cancel my account!!!</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>Unhappy?!!! <%= button_to "Cancel my account", registration_path(resource_name), class: "btn btn-danger", data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-<%= link_to "Back", :back %>
+<%= link_to "Back", :back, class: "btn btn-secondary" %>

@@ -6,11 +6,11 @@
     <ul class="navbar-nav mr-auto">
 
       <li class="nav-item ">
-        <%= link_to 'Assets', map_assets_path, class:"nav-link" %>
+        <%= link_to 'Assets', map_assets_path, class: "nav-link" %>
       </li>
 
       <li class="nav-item ">
-        <%= link_to 'Stories', stories_path, class:"nav-link" %>
+        <%= link_to 'Stories', stories_path, class: "nav-link" %>
       </li>
 
       <% if user_signed_in? %> 
@@ -28,14 +28,14 @@
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <% if current_user.role == "admin" %>
-              <%= link_to "Surveys List", surveys_path, class:"dropdown-item" %>
+              <%= link_to "Surveys List", surveys_path, class: "dropdown-item" %>
 
-              <%= link_to "Create Survey", new_user_survey_path(current_user), class:"dropdown-item", data: { confirm: 'Are you sure?' } %>
+              <%= link_to "Create Survey", new_user_survey_path(current_user), class: "dropdown-item", data: { confirm: 'Are you sure?' } %>
             <% end %>
 
             <% if survey_exists && current_user.responses.first.blank? %>
-              <%= link_to "Fill Survey", new_survey_response_path(@survey), class:"dropdown-item" %>
-              <%= link_to "Survey Results", responses_path(survey_id: @survey.id), class:"dropdown-item" %>
+              <%= link_to "Fill Survey", new_survey_response_path(@survey), class: "dropdown-item" %>
+              <%= link_to "Survey Results", responses_path(survey_id: @survey.id), class: "dropdown-item" %>
              <% end %>
           </div>
         </div>

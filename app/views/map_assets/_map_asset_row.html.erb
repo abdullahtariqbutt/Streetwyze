@@ -6,7 +6,7 @@
   <td><%= asset.rating %></td>
   <td><%= asset.stuff_type %></td>
   <td><%= asset.description %></td>
-  <td><%= link_to 'Show', map_asset_path(asset), class:"btn btn-primary" %></td>
+  <td><%= link_to 'Show', map_asset_path(asset), class: "btn btn-primary" %></td>
 
   <!-- User Sign In Check to Allow Edit and Delete -->
   <% if asset.user == current_user %>

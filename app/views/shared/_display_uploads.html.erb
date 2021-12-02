@@ -15,10 +15,11 @@
     <!-- Owner Check to allow Delete Option -->
     <% if user_signed_in? %>
       <% if target.user == current_user %>
-        <%= link_to 'Remove', delete_image_story_path(upload.signed_id), class:"btn btn-primary",
+        <%= link_to 'Remove', delete_image_story_path(upload.signed_id), class: "btn btn-primary",
                   method: :delete,
                   data: { confirm: 'Are you sure?' } %>
-        <br><br><br>
+        <br><br>
+        <hr>
       <% end %>
     <% end %>
   <% end %>

@@ -1,5 +1,4 @@
 <div class="container pt-5 border border-dark bg-light rounded">
-
   <h1 class="text-center"><%= @survey.title %></h1>
 
   <h5>Script:</h5>
@@ -28,7 +27,7 @@
                 <% when 'open_ended' %>
                   
                     <%= answer.hidden_field :question_id, value: question.id %>
-                    <%= answer.text_field :content, class:"form-control" %>
+                    <%= answer.text_field :content, class: "form-control" %>
 
 
                 <% when 'multiple_choice' %>
@@ -54,5 +53,4 @@
   <div class= "pt-3 pb-3">
     <%= link_to 'Back', root_path, class: "btn btn-secondary" %>
   </div>
-
 </div>

@@ -35,12 +35,12 @@
 
 <br>
 
-<%= render "shared/display_uploads", target:@story %>
+<%= render "shared/display_uploads", target: @story %>
 
 <!-- User Sign In Check to Allow Edit -->
 <% if user_signed_in? %>
   <% if @story.user == current_user %>
-    <%= link_to 'Edit', edit_story_path(@story), class:"btn btn-primary" %>
+    <%= link_to 'Edit', edit_story_path(@story), class: "btn btn-primary" %>
   <% end %>
 <% end %>
-<%= link_to 'Back', stories_path, class:"btn btn-primary" %>
+<%= link_to 'Back', stories_path, class: "btn btn-primary" %>

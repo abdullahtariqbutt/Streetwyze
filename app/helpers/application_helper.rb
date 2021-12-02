@@ -13,11 +13,11 @@ module ApplicationHelper
     @survey = Survey.first
   end
 
-  def get_categories
+  def get_stuff_type
      ["Good", "Bad", "Fix"]
   end
 
-  def get_stuff_type
+  def get_categories
     ["Art", "Education", "Health", "Business", "Enviroment", "Housing", "Child Care", "Food", "Industry", "Safety", "Transportation"]
   end
 end

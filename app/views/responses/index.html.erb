@@ -4,7 +4,6 @@
 
   <thead>
     <tr>
-
       <th>Questions</th>
 
       <% if @survey.responses %>
@@ -16,12 +15,10 @@
           <% count = count + 1 %>
         <% end %>
       <% end %>
-
     </tr>
   </thead>
 
   <tbody>
-
     <% @survey.questions.each do |question|%>
       <tr>
 
@@ -41,9 +38,8 @@
 
       </tr>
     <% end %>
-
   </tbody>
 </table>
 
 
-<%= link_to 'Export CSV', responses_path(format: "csv"), class:"btn btn-primary" %>
+<%= link_to 'Export CSV', responses_path(format: "csv"), class: "btn btn-primary" %>

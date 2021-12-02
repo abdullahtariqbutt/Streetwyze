@@ -23,8 +23,8 @@
   </thead>
 
   <tbody id="assets_table">
-    <% @map_assets.each do |asset| %>
-      <%= render 'map_asset_row', asset: asset %>
+    <% @map_assets.each do |map_asset| %>
+      <%= render 'map_asset_row', asset: map_asset %>
     <% end %>
   </tbody>
 </table>

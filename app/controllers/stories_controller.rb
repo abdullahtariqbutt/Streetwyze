@@ -6,7 +6,7 @@ class StoriesController < ApplicationController
     @stories = Story.all
 
     if params[:search].present?
-      @stories = Story.send_chain(ApplyFiltersService.new(params).call)
+      @stories = Story.send_chain(ApplyFiltersService.new(params, current_user).call)
     end
 
     respond_to do |format|

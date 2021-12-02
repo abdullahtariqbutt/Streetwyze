@@ -1,5 +1,4 @@
 class MapAssetsController < ApplicationController
-
   before_action :find_asset, only: %i[show edit update destroy]
 
   def index
@@ -55,8 +54,9 @@ class MapAssetsController < ApplicationController
   end
 
   def delete_image
-    @image = ActiveStorage::Blob.find_signed(params[:id])
-    @image.attachments.first.purge
+    @upload = ActiveStorage::Blob.find_signed(params[:id])
+    @upload.attachments.first.purge
+
     redirect_to map_assets_path, notice: "Image Deleted"
   end
 

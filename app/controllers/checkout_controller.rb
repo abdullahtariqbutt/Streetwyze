@@ -11,8 +11,8 @@ class CheckoutController < ApplicationController
         quantity:1,
       }],
       client_reference_id: user.id,
-
       mode: 'payment',
+
       success_url: edit_user_registration_url,
       cancel_url: edit_user_registration_url,
     })
@@ -27,5 +27,4 @@ class CheckoutController < ApplicationController
   def find_user
     @user = User.find(params[:id])
   end
-
 end

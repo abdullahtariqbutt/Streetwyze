@@ -1,6 +1,4 @@
 class ResponsesController < ApplicationController
-  require 'csv'
-
   before_action :find_survey, only: %i[new create]
 
   def index
@@ -11,8 +9,6 @@ class ResponsesController < ApplicationController
       format.csv { send_data GenerateResponseCsv.call(target: @survey), filename: "Resonses-#{Date.today}.csv" }
     end
   end
-
-  def show; end
 
   def show_msg
     if params.has_key?(:choice)
@@ -50,6 +46,6 @@ class ResponsesController < ApplicationController
     end
 
     def response_params
-      params.require(:response).permit(answers_attributes: [:id, :question_id, :option_id, :content] )
+      params.require(:response).permit(answers_attributes: [:id, :question_id, :option_id, :content])
     end
 end

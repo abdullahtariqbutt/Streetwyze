@@ -26,9 +26,9 @@ class WebhooksController < ApplicationController
       session = event.data.object
 
       @user = User.find(session.client_reference_id)
-      @user.update(is_premium_user: true)
+      @user.update_attribute(:is_premium_user, true)
     end
 
-    render json: { message: 'success' }
+    render json: { message: 'Success' }
   end
 end

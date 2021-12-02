@@ -21,7 +21,7 @@ class SurveysController < ApplicationController
       if @survey.save
         format.html { redirect_to @survey, notice: "Survey was successfully created." }
       else
-        format.html { render :new}
+        format.html { render :new }
       end
     end
   end
@@ -46,15 +46,15 @@ class SurveysController < ApplicationController
 
   private
 
-    def find_survey
-      @survey = Survey.find(params[:id])
-    end
+  def find_survey
+    @survey = Survey.find(params[:id])
+  end
 
-    def find_user
-      @user = User.find(params[:user_id])
-    end
+  def find_user
+    @user = User.find(params[:user_id])
+  end
 
-    def survey_params
-      params.require(:survey).permit(:user_id, :title, :script, questions_attributes:[:id, :content, :question_type, :_destroy, options_attributes:[:id, :content, :_destroy]] )
-    end
+  def survey_params
+    params.require(:survey).permit(:user_id, :title, :script, questions_attributes: [:id, :content, :question_type, :_destroy, options_attributes: [:id, :content, :_destroy]])
+  end
 end

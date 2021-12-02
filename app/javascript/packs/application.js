@@ -14,12 +14,12 @@ ActiveStorage.start()
 import $ from 'jquery';
 global.$ = jQuery;
 
-import 'controllers'
+import "controllers";
 
 import "bootstrap";
 
-require('packs/raty.js');
-require("packs/rating.js");
+require("packs/raty");
+require("packs/rating");
 
 require("packs/emoji");
 require("packs/display_emojis");
@@ -27,8 +27,8 @@ require("packs/display_emojis");
 require("daterangepicker");
 require("packs/pickdate.js");
 
-require("trix");
-require("@rails/actiontext");
-
 require("packs/survey_msg");
 require("packs/form_validation");
+
+require("trix");
+require("@rails/actiontext");

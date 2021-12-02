@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-
   has_one :survey, dependent: :destroy
   has_many :responses, dependent: :destroy
 
@@ -21,9 +20,8 @@ class User < ApplicationRecord
   validates :password,
     format: {
        with: PASSWORD_REGEX,
-       message: "should be minimum 8 characters long with atleast one Capital and one Special character"
+       message: " should be minimum 8 characters long with atleast one Capital and one Special character"
     }, if: -> { self.password.present? }
-
 
   enum role: [:common, :admin]
 

@@ -1,5 +1,4 @@
 class StoriesController < ApplicationController
-
   before_action :find_story, only: %i[show edit update destroy]
   before_action :find_map_asset, only: %i[new create]
 
@@ -54,22 +53,23 @@ class StoriesController < ApplicationController
   end
 
   def delete_image
-    @image = ActiveStorage::Blob.find_signed(params[:id])
-    @image.attachments.first.purge
+    @upload = ActiveStorage::Blob.find_signed(params[:id])
+    @upload.attachments.first.purge
+
     redirect_to map_assets_path, notice: "Image Deleted"
   end
 
   private
 
-    def find_story
-      @story = Story.find(params[:id])
-    end
+  def find_story
+    @story = Story.find(params[:id])
+  end
 
-    def find_map_asset
-      @map_asset = MapAsset.find(params[:map_asset_id])
-    end
+  def find_map_asset
+    @map_asset = MapAsset.find(params[:map_asset_id])
+  end
 
-    def story_params
-      params.require(:story).permit(:user_id, :name, :address, :category, :rating, :stuff_type, :description, uploads: [])
-    end
+  def story_params
+    params.require(:story).permit(:user_id, :name, :address, :category, :rating, :stuff_type, :description, uploads: [])
+  end
 end

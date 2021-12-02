@@ -1,28 +1,33 @@
 window.asset_rating = function() {
+
   $('#map_asset .rating_display').raty({
 
     readOnly: true,
     numberMax: 5,
 
     starOn: '../images/star-on.png',
-    starOff: '../images/star-off.png',
+    starOff: '../images/star-off.png'
 
   });
+
 }
 
 window.story_rating = function() {
+
   $('#story .rating_display').raty({
 
     readOnly: true,
     numberMax: 5,
 
     starOn: '../images/star-on.png',
-    starOff: '../images/star-off.png',
+    starOff: '../images/star-off.png'
 
   });
+
 }
 
 window.rating_binder = function() {
+
   $('#rate #rating').raty({
 
     targetType: 'score',
@@ -33,7 +38,7 @@ window.rating_binder = function() {
     numberMax: 5,
 
     starOn: '../images/star-on.png',
-    starOff: '../images/star-off.png',
+    starOff: '../images/star-off.png'
 
   });
 
@@ -48,10 +53,12 @@ window.rating_binder = function() {
       target: '#review_star',
       targetScore: null,
 
-      numberMax: 5,
+      numberMax: 5
+
     });
 
   });
+
 }
 
 $(document).on('turbolinks:load',function(){

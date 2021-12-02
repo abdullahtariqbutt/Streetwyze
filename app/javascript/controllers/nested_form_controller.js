@@ -2,10 +2,6 @@ import { Controller } from "stimulus";
 
 export default class extends Controller {
 
-  connect() {
-    console.log("hello from Nested form contoller");
-  }
-
   static targets = ["add_item", "template"];
   static values = {index: String};
 

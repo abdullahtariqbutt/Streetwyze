@@ -1,4 +1,3 @@
-
 ;(function($) {
   if( !window.$ ){
     console.error('Jquery wanst loaded in your project.');

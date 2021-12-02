@@ -1,0 +1,7 @@
+<% if @story.errors.any? %>
+  $("#edit_story_form").html("<%= j render('form', target: @story, map_asset: @story.map_asset) %>");
+  rating_binder();
+<% else %>
+  location.reload();
+  $("#new_story_modal").modal('hide');
+<% end %>

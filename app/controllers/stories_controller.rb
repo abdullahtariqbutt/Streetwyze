@@ -40,16 +40,23 @@ class StoriesController < ApplicationController
   end
 
   def update
-    if @story.update(story_params)
-      redirect_to @story, notice: "Story Updated"
-    else
-      render :edit
+    success = @story.update(story_params)
+
+    respond_to do |format|
+      format.html do
+        if success
+          redirect_to @story, notice: "Story Updated"
+        else
+          render :edit
+        end
+      end
+      format.js
     end
   end
 
   def destroy
     @story.destroy
-    redirect_to stories_url, notice: "Story Deleted"
+    redirect_to @story.map_asset, notice: "Story Deleted"
   end
 
   def delete_image

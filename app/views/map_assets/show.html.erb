@@ -37,7 +37,7 @@
 
 <!-- User Sign In Check to Allow Edit -->
 <% if @map_asset.user == current_user %>
-  <%= link_to 'Edit', edit_map_asset_path(@map_asset), class: "btn btn-primary btn-lg" %> |
+  <%= link_to 'Edit', edit_map_asset_path(@map_asset), class: "btn btn-primary" %>
 <% end %>
 <%= link_to 'Back', map_assets_path, class: "btn btn-primary" %>
 
@@ -51,16 +51,16 @@
 <!-- Display Stories -->
 <h1>Stories</h1>
 
-<table>
+<table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Category</th>
-      <th>Rating</th>
-      <th>Stuff type</th>
-      <th>Description</th>
-      <th colspan="3"></th>
+      <th scope="col" class="center_text">Name</th>
+      <th scope="col" class="center_text">Address</th>
+      <th scope="col" class="center_text">Category</th>
+      <th scope="col" class="center_text">Rating</th>
+      <th scope="col" class="center_text">Stuff type</th>
+      <th scope="col" class="center_text">Description</th>
+      <th colspan="2" scope="col" class="center_text">Actions</th>
     </tr>
   </thead>
 

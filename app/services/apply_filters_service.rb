@@ -29,19 +29,15 @@ class ApplyFiltersService
       end
     end
 
-    if @params[:search].has_key?(:date)
+    if @params[:search].has_key?(:date) && !@params[:search][:date].to_s.empty?
       start_date, end_date = @params[:search][:date].split('-')
       if start_date && end_date
-        start_date = start_date.to_time
-        end_date = end_date.to_time
+        filters << [:having_dob_between, (start_date.to_date.beginning_of_day), (end_date.to_date.end_of_day)]
       end
-      filters << [:having_dob_between, start_date, end_date]
     end
 
-    if @params[:search].has_key?(:keyword)
-      if !@params[:search][:keyword].to_s.empty?
-        filters << [:search_keyword, @params[:search][:keyword]]
-      end
+    if @params[:search].has_key?(:keyword) && !@params[:search][:keyword].to_s.empty?
+      filters << [:search_keyword, @params[:search][:keyword]]
     end
 
     filters

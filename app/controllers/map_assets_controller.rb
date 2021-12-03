@@ -5,7 +5,10 @@ class MapAssetsController < ApplicationController
     @map_assets = MapAsset.all
 
     if params[:search].present?
-      @map_assets = MapAsset.send_chain(ApplyFiltersService.new(params, current_user).call)
+      filters = (ApplyFiltersService.new(params, current_user).call)
+      if filters.present?
+        @map_assets = MapAsset.send_chain(filters)
+      end
     end
 
     respond_to do |format|

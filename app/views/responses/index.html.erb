@@ -1,6 +1,6 @@
 <h1>Responses</h1>
 
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped table-responsive">
 
   <thead>
     <tr>
@@ -41,5 +41,4 @@
   </tbody>
 </table>
 
-
-<%= link_to 'Export CSV', responses_path(format: "csv"), class: "btn btn-primary" %>
+<%= link_to 'Export CSV', responses_path(format: "csv", survey_id: @survey), class: "btn btn-primary" %>

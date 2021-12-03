@@ -1,5 +1,4 @@
 checkFields = function(form) {
-
   var checks_radios = form.find('[type="radio"]'),
     checked = checks_radios.filter(':checked'),
 
@@ -12,7 +11,6 @@ checkFields = function(form) {
     return false;
   }
   return true;
-
 }
 
 $(document).on('turbolinks:load', function(){

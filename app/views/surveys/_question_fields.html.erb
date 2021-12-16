@@ -1,0 +1,21 @@
+<div class='nested-fields box' data-controller='dynamic-select'>
+
+  <div class='form-group'>
+    <%= form.select :question_type,
+        options_for_select(Question.question_type_select, selected: form.object.question_type),
+        {},
+        'data-dynamic-select-target': 'select',
+        'data-action': 'change->dynamic-select#selected' %>
+  </div>
+
+  <div class='form-group'>
+    <%= form.hidden_field :_destroy %>
+    <%= form.text_field :content, placeholder: 'Question', class: 'form-control' %>
+    <small>
+      <%= link_to "Remove", "#", data: { action: "click->nested-form#remove_association" } %>
+    </small>
+  </div>
+
+  <%= render "answer_fields", form: form, survey: survey%>
+
+</div>

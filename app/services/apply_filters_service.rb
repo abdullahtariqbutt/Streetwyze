@@ -1,7 +1,8 @@
 class ApplyFiltersService
 
-  def initialize(parameters)
+  def initialize(parameters, current_user)
     @params = parameters
+    @current_user = current_user
   end
 
   def call
@@ -24,19 +25,19 @@ class ApplyFiltersService
 
     if @params[:search].has_key?(:author)
       if @params[:search][:author] == "Only Me"
-        filters << [:owner_record, current_user]
+        filters << [:owner_record, @current_user]
       end
     end
 
-    if @params[:search].has_key?(:date)
-      start_date, end_date = @params[:search][:date].split(' - ')
-      filters << [:having_dob_between, start_date, end_date]
+    if @params[:search].has_key?(:date) && !@params[:search][:date].to_s.empty?
+      start_date, end_date = @params[:search][:date].split('-')
+      if start_date && end_date
+        filters << [:having_dob_between, (start_date.to_date.beginning_of_day), (end_date.to_date.end_of_day)]
+      end
     end
 
-    if @params[:search].has_key?(:keyword)
-      if !@params[:search][:keyword].to_s.empty?
-        filters << [:search_keyword, @params[:search][:keyword]]
-      end
+    if @params[:search].has_key?(:keyword) && !@params[:search][:keyword].to_s.empty?
+      filters << [:search_keyword, @params[:search][:keyword]]
     end
 
     filters

@@ -1,0 +1,30 @@
+<!-- Modal Code -->
+<div class="modal fade" id="survey_msg_modal" data-backdrop="static" tabindex="-1" aria-labelledby="SurveyMsgtModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="survey_msg_modal_label">Fill a Survey</h5>
+      </div>
+
+      <div id="survey_msg_form">
+        <div class="container" >
+          <%= form_with url: show_survey_fill_path, method: :get do |form| %>
+
+            <%= form.label :choice, "Would you like to take a survey" %>
+            <%= form.select :choice, ["Yes", "No"],{ selected:"", disabled:"" }, class:"form-control" %>  
+
+            <div class="pt-2 pb-2">
+              <%= form.submit "Submit", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- End of Modal Code -->
+
+<h1>Request</h1>
+
+<%= link_to 'Show Msg', show_survey_fill_path, class: "btn btn-primary", id:"ask_survey_msg", data: { toggle: 'modal', target: '#survey_msg_modal'} %>

@@ -2,7 +2,7 @@
 <% if user_signed_in? %>
   <%= link_to 'Add Story', new_map_asset_story_path(map_asset), class: "btn btn-primary", data: { toggle: 'modal', target: '#new_story_modal', remote: true } %>
 <% else %>
-  <%= link_to 'Add Story', map_asset_path(map_asset), class: "btn btn-primary"%>
+  <%= link_to 'Add Story', map_asset_path(map_asset), class: "btn btn-primary" %>
 <% end %>
 
 <!-- Modal Code -->

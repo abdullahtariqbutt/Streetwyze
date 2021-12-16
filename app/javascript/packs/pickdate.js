@@ -6,7 +6,7 @@ window.date_pick = function() {
   var end = moment();
 
   function cb(start, end) {
-    $('date_field').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+    $('date_field').html(start.format('D MMMM, YYYY') + '-' + end.format('D MMMM, YYYY'));
   }
 
   $('#date_field').daterangepicker({
@@ -27,7 +27,7 @@ window.date_pick = function() {
   cb(start, end);
 
   $('#date_field').on('apply.daterangepicker', function(ev, picker) {
-    $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+    $(this).val(picker.startDate.format('DD/MM/YYYY') + '-' + picker.endDate.format('DD/MM/YYYY'));
   });
 
   $('#date_field').on('cancel.daterangepicker', function(ev, picker) {

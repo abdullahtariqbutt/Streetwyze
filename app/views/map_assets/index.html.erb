@@ -4,27 +4,27 @@
 <!-- Filters Form -->
 <%= render 'shared/search_form', target: search_assets_path %>
 
-<%= link_to 'Export CSV', map_assets_path(request.params.merge(format: "csv")), class:"btn btn-primary" %>
+<%= link_to 'Export CSV', map_assets_path(request.params.merge(format: "csv")), class: "btn btn-primary" %>
 
 <!-- Listing Assets -->
 <h1>Assets List</h1>
 
-<table class="table table-striped table-bordered table-hover">
+<table class="table table-striped table-bordered table-hover table-responsive">
   <thead>
     <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Address</th>
-      <th scope="col">Category</th>
-      <th scope="col">Rating</th>
-      <th scope="col">Stuff type</th>
-      <th scope="col">Description</th>
-      <th scope="col" colspan="3" class="align-content-center">Actions</th>
+      <th scope="col" class="center_text">Name</th>
+      <th scope="col" class="center_text">Address</th>
+      <th scope="col" class="center_text">Category</th>
+      <th scope="col" class="center_text">Rating</th>
+      <th scope="col" class="center_text">Stuff Type</th>
+      <th scope="col" class="center_text">Description</th>
+      <th scope="col" colspan="3" class="center_text">Actions</th>
     </tr>
   </thead>
 
   <tbody id="assets_table">
-    <% @map_assets.each do |asset| %>
-      <%= render 'map_asset_row', asset: asset %>
+    <% @map_assets.each do |map_asset| %>
+      <%= render 'map_asset_row', asset: map_asset %>
     <% end %>
   </tbody>
 </table>

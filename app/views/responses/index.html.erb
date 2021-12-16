@@ -1,0 +1,44 @@
+<h1>Responses</h1>
+
+<table class="table table-bordered table-striped table-responsive">
+
+  <thead>
+    <tr>
+      <th>Questions</th>
+
+      <% if @survey.responses %>
+        <% count = 1 %>
+        <% @survey.responses.each do |response| %>
+
+          <th>Response No. <%= count %></th>
+
+          <% count = count + 1 %>
+        <% end %>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @survey.questions.each do |question|%>
+      <tr>
+
+        <td><strong><%= question.content %></strong></td>
+
+        <% @survey.responses.each do |response|%>
+
+          <td>
+            <% if question.question_type == 'multiple_choice'%>
+              <%= response.answers.find_by(question_id: question.id).option.nil? ? nil : response.answers.find_by(question_id: question.id).option.content %>
+            <% else %>
+              <%= response.answers.find_by(question_id: question.id).content %>
+            <% end %>
+          </td>
+
+        <% end %>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Export CSV', responses_path(format: "csv", survey_id: @survey), class: "btn btn-primary" %>

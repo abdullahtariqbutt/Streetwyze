@@ -1,0 +1,18 @@
+<div data-controller="nested-form" data-nested-form-index-value='QUESTION_RECORD'>
+
+  <template data-nested-form-target='template'>
+    <%= form.fields_for :questions, Question.new, child_index: 'QUESTION_RECORD' do |question| %>
+      QUESTION - QUESTION_RECORD
+      <%= render 'question_fields', form: question, survey: survey %>
+    <% end %>
+  </template>
+
+  <%= form.fields_for :questions do |question| %>
+    <%= render 'question_fields', form: question, survey: survey %>
+  <% end %>
+
+  <div data-nested-form-target="add_item">
+    <%= link_to "Add Question", "#", data: { action: "nested-form#add_association" } %>
+  </div>
+
+</div>

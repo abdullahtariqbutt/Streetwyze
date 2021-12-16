@@ -1,12 +1,14 @@
 class MapAssetsController < ApplicationController
-
   before_action :find_asset, only: %i[show edit update destroy]
 
   def index
     @map_assets = MapAsset.all
 
     if params[:search].present?
-      @map_assets = MapAsset.send_chain(ApplyFiltersService.new(params).call)
+      filters = (ApplyFiltersService.new(params, current_user).call)
+      if filters.present?
+        @map_assets = MapAsset.send_chain(filters)
+      end
     end
 
     respond_to do |format|
@@ -55,8 +57,9 @@ class MapAssetsController < ApplicationController
   end
 
   def delete_image
-    @image = ActiveStorage::Blob.find_signed(params[:id])
-    @image.attachments.first.purge
+    @upload = ActiveStorage::Blob.find_signed(params[:id])
+    @upload.attachments.first.purge
+
     redirect_to map_assets_path, notice: "Image Deleted"
   end
 

@@ -1,0 +1,56 @@
+<div class="container pt-5 border border-dark bg-light rounded">
+  <h1 class="text-center"><%= @survey.title %></h1>
+
+  <h5>Script:</h5>
+
+  <p class="pl-4"><%= @survey.script %></p>
+
+  <hr>
+
+  <%= form_with(model: @response, url: survey_responses_path, html: {id: "response_form"}) do |form| %>
+    <ol>
+      <% @survey.questions.each do |question|%>
+
+        <%= form.fields_for :answers, Answer.new do |answer| %>
+
+          <div class="form-group pl-5">
+            <h4><li><%= question.content %></li></h4>
+          
+            <% case question.question_type
+
+                when 'smiley_based' %>
+                  <%= answer.hidden_field :question_id, value: question.id %>
+                  <div>
+                    <div class="emoji-div"></div>
+                    <%= answer.hidden_field :content %>
+                  </div>
+                <% when 'open_ended' %>
+                  
+                    <%= answer.hidden_field :question_id, value: question.id %>
+                    <%= answer.text_field :content, class: "form-control" %>
+
+
+                <% when 'multiple_choice' %>
+                  <%= answer.hidden_field :question_id, value: question.id %>
+                  <%= answer.collection_radio_buttons :option_id, question.options, :id, :content %>
+
+            <% end %>
+          </div>
+
+        <% end %>
+
+      <% end %>
+    </ol>
+
+    <hr>
+
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary", id: "hit_it" %>
+    </div>
+
+  <% end %>
+
+  <div class= "pt-3 pb-3">
+    <%= link_to 'Back', root_path, class: "btn btn-secondary" %>
+  </div>
+</div>
